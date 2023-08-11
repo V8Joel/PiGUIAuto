@@ -16,6 +16,7 @@ qt_add_qml_module(appPiGUIAuto
     URI PiGUIAuto
     VERSION 1.0
     QML_FILES Main.qml
+    RESOURCES assets/images/istockphoto-996396804-170667a.jpg
 
 )
 

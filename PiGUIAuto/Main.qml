@@ -37,4 +37,14 @@ Window {
             }
         }
     }
+
+    Image {
+        id: image
+        x: 218
+        y: 125
+        width: 231
+        height: 231
+        source: "assets/images/istockphoto-996396804-170667a.jpg"
+        fillMode: Image.PreserveAspectFit
+    }
 }
