@@ -23,14 +23,28 @@ Item {
             rotation: -45
             fillMode: Image.PreserveAspectFit
 
-            RotationAnimator {
-                target: rpm_needle_nighttime_mod
-                from: -45
-                to: 225
-                duration: 3000 // rotate over two seconds
-                loops: Animation.Infinite
-                running: true
-            }
+            MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        rpm_needle_nighttime_mod.rotation = rpm_needle_nighttime_mod.rotation === -45 ? 225 : -45;
+                    }
+                }
+
+                Behavior on rotation {
+                    NumberAnimation {
+                        duration: 2000
+                        easing.type: Easing.InOutSine
+                    }
+                }
+
+                // Add the SpringAnimation
+                SpringAnimation {
+                    target: rpm_needle_nighttime_mod
+                    property: "rotation"
+                    spring: 2
+                    damping: 0.2
+                    modulus: 270  // To keep rotation in the range of [0, 360)
+                }
         }
     }
 

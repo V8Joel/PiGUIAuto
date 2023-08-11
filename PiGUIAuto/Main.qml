@@ -8,7 +8,7 @@ Window {
     height: 1080
 
     visible: true
-    color: "#000000"
+    color: "#4c4c4c"
     title: qsTr("Hello World")
 
     RPM {
@@ -42,5 +42,20 @@ Window {
                 }
             }
         }
+    }
+
+    Text {
+        id: text1
+        x: 109
+        y: 88
+        width: 261
+        height: 76
+        color: "#ffffff"
+        text: qsTr("Click the dial:")
+        font.pixelSize: 25
+        horizontalAlignment: Text.AlignHCenter
+        verticalAlignment: Text.AlignVCenter
+        font.weight: Font.Bold
+        font.family: "Courier"
     }
 }
