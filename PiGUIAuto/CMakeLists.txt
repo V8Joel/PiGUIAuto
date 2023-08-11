@@ -17,6 +17,10 @@ qt_add_qml_module(appPiGUIAuto
     VERSION 1.0
     QML_FILES Main.qml
     RESOURCES assets/images/istockphoto-996396804-170667a.jpg
+    QML_FILES
+    QML_FILES RPM.qml
+    SOURCES RPM.h RPM.cpp
+    RESOURCES assets/images/istockphoto-996396804-170667a.jpg assets/images/mpg_needle_daytime_mod.PNG assets/images/mpg_needle_daytime_unmod.PNG assets/images/mpg_needle_nighttime_mod.PNG assets/images/mpg_needle_nighttime_unmod.PNG assets/images/rpm_face_daytime.PNG assets/images/rpm_face_nighttime.PNG assets/images/rpm_needle_daytime_mod.PNG assets/images/rpm_needle_daytime_unmod.PNG assets/images/rpm_needle_nighttime_mod.PNG assets/images/rpm_needle_nighttime_unmod.PNG
 
 )
 

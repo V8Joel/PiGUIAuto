@@ -8,7 +8,12 @@ Window {
     height: 1080
 
     visible: true
+    color: "#000000"
     title: qsTr("Hello World")
+
+    RPM {
+        anchors.centerIn: parent
+    }
 
     InputPanel {
         id: inputPanel
@@ -37,15 +42,5 @@ Window {
                 }
             }
         }
-    }
-
-    Image {
-        id: image
-        x: 696
-        y: 307
-        width: 528
-        height: 465
-        source: "assets/images/istockphoto-996396804-170667a.jpg"
-        fillMode: Image.PreserveAspectFit
     }
 }
