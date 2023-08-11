@@ -4,8 +4,9 @@ import QtQuick.VirtualKeyboard
 
 Window {
     id: window
-    width: 640
-    height: 480
+    width: 1920
+    height: 1080
+
     visible: true
     title: qsTr("Hello World")
 
@@ -40,10 +41,10 @@ Window {
 
     Image {
         id: image
-        x: 218
-        y: 125
-        width: 231
-        height: 231
+        x: 696
+        y: 307
+        width: 528
+        height: 465
         source: "assets/images/istockphoto-996396804-170667a.jpg"
         fillMode: Image.PreserveAspectFit
     }
