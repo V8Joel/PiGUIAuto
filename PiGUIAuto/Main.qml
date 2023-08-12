@@ -5,6 +5,7 @@ import QtQuick.Controls
 import QtCharts
 import QtQuick.Layouts
 
+
 Window {
     id: window
     width: 1920
@@ -12,12 +13,18 @@ Window {
 
     visible: true
     color: "#343434"
-    title: qsTr("Hello World")
+    title: qsTr("RPM Dial Test")
 
     RPM {
-        anchors.verticalCenterOffset: 0
-        anchors.horizontalCenterOffset: -419
-        anchors.centerIn: parent
+        antialiasing: true
+        anchors.left:parent.left
+        anchors.leftMargin: 45
+        anchors.top: parent.top
+        anchors.topMargin: (parent.height - height) / 2
+        spring: spring_slider.slider_value
+        mass: mass_slider.slider_value
+        damping: damper_slider.slider_value
+
     }
 
     InputPanel {
@@ -51,10 +58,11 @@ Window {
 
     Text {
         id: click
-        x: 18
-        y: 14
-        width: 261
-        height: 76
+        anchors.left: parent.left
+        anchors.top: parent.top
+        anchors.margins: 50
+        width: 250
+        height: 25
         color: "#ffbb00"
         text: qsTr("Click the dial:")
         font.pixelSize: 25
@@ -64,141 +72,28 @@ Window {
         font.family: "Courier"
     }
 
-    Slider {
-        id: spring_slider
-        x: 1444
-        y: 149
-        width: 250
-        height: 40
-        to: 10
-        scale: 2
-        snapMode: RangeSlider.SnapAlways
-        touchDragThreshold: 0
-        stepSize: 0.1
-        rotation: 0
-        value: 5
-    }
+    Column {
+        anchors.right: parent.right
+        anchors.top: parent.top
+        anchors.topMargin: (parent.height - height) / 2
+        height: 400
+        id: slider_padding
+        spacing: 50
+        width: 400
 
-    Text {
-        id: spring_constant_text
-        x: 1319
-        y: 88
-        width: 500
-        height: 45
-        color: "#ffbb00"
-        text: qsTr("Spring Constant")
-        font.pixelSize: 25
-        horizontalAlignment: Text.AlignHCenter
-        verticalAlignment: Text.AlignVCenter
-        font.weight: Font.Bold
-        font.family: "Courier"
-    }
+        Slider_module {
+           id: spring_slider
+            slider_text: "Spring Constant"
+        }
 
-    Text {
-        id: spring_slider_text
-        x: 1454
-        y: 197
-        width: 230
-        height: 62
-        color: "#ffbb00"
-        text: spring_slider.value
-        font.pixelSize: 30
-        horizontalAlignment: Text.AlignHCenter
-        verticalAlignment: Text.AlignVCenter
-        font.bold: true
-        font.family: "Courier"
-        textFormat: Text.RichText
-    }
+        Slider_module {
+            id: mass_slider
+            slider_text: "Mass Constant"
+        }
 
-    Slider {
-        id: damping_slider
-        x: 1444
-        y: 326
-        width: 250
-        height: 40
-        scale: 2
-        snapMode: RangeSlider.SnapAlways
-        value: 5
-        rotation: 0
-        touchDragThreshold: 0
-        stepSize: 0.1
-        to: 10
-    }
-
-    Text {
-        id: damping_coefficient_text
-        x: 1319
-        y: 265
-        width: 500
-        height: 45
-        color: "#ffbb00"
-        text: qsTr("Damping Coefficient")
-        font.pixelSize: 25
-        horizontalAlignment: Text.AlignHCenter
-        verticalAlignment: Text.AlignVCenter
-        font.family: "Courier"
-        font.weight: Font.Bold
-    }
-
-    Text {
-        id: damping_slider_value
-        x: 1454
-        y: 374
-        width: 230
-        height: 62
-        color: "#ffbb00"
-        text: damping_slider.value
-        font.pixelSize: 30
-        horizontalAlignment: Text.AlignHCenter
-        verticalAlignment: Text.AlignVCenter
-        font.family: "Courier"
-        font.bold: true
-        textFormat: Text.RichText
-    }
-
-    Slider {
-        id: mass_slider
-        x: 1444
-        y: 503
-        width: 250
-        height: 40
-        scale: 2
-        snapMode: RangeSlider.SnapAlways
-        value: 5
-        rotation: 0
-        touchDragThreshold: 0
-        stepSize: 0.1
-        to: 10
-    }
-
-    Text {
-        id: mass_slider_text
-        x: 1319
-        y: 442
-        width: 500
-        height: 45
-        color: "#ffbb00"
-        text: qsTr("Mass")
-        font.pixelSize: 25
-        horizontalAlignment: Text.AlignHCenter
-        verticalAlignment: Text.AlignVCenter
-        font.family: "Courier"
-        font.weight: Font.Bold
-    }
-
-    Text {
-        id: text7
-        x: 1454
-        y: 551
-        width: 230
-        height: 62
-        color: "#ffbb00"
-        text: mass_slider.value
-        font.pixelSize: 30
-        horizontalAlignment: Text.AlignHCenter
-        verticalAlignment: Text.AlignVCenter
-        font.family: "Courier"
-        font.bold: true
-        textFormat: Text.RichText
+        Slider_module {
+            id: damper_slider
+            slider_text: "Damper Constant"
+        }
     }
 }

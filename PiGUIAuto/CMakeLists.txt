@@ -21,6 +21,8 @@ qt_add_qml_module(appPiGUIAuto
     QML_FILES RPM.qml
     SOURCES RPM.h RPM.cpp
     RESOURCES assets/images/istockphoto-996396804-170667a.jpg assets/images/mpg_needle_daytime_mod.PNG assets/images/mpg_needle_daytime_unmod.PNG assets/images/mpg_needle_nighttime_mod.PNG assets/images/mpg_needle_nighttime_unmod.PNG assets/images/rpm_face_daytime.PNG assets/images/rpm_face_nighttime.PNG assets/images/rpm_needle_daytime_mod.PNG assets/images/rpm_needle_daytime_unmod.PNG assets/images/rpm_needle_nighttime_mod.PNG assets/images/rpm_needle_nighttime_unmod.PNG
+    RESOURCES assets/images/istockphoto-996396804-170667a.jpg assets/images/mpg_needle_daytime_2_unmod.PNG assets/images/mpg_needle_daytime_mod.PNG assets/images/mpg_needle_daytime_unmod.PNG assets/images/mpg_needle_nighttime_mod.PNG assets/images/mpg_needle_nighttime_unmod.PNG assets/images/rpm_face_daytime.PNG assets/images/rpm_face_nighttime.PNG assets/images/rpm_needle_daytime_2_unmod.PNG assets/images/rpm_needle_daytime_mod.PNG assets/images/rpm_needle_daytime_unmod.PNG assets/images/rpm_needle_nighttime_mod.PNG assets/images/rpm_needle_nighttime_unmod.PNG
+    QML_FILES Slider_module.qml
 
 )
 
