@@ -24,28 +24,28 @@ Item {
             fillMode: Image.PreserveAspectFit
 
             MouseArea {
-                    anchors.fill: parent
-                    onClicked: {
-                        rpm_needle_nighttime_mod.rotation = rpm_needle_nighttime_mod.rotation === -45 ? 225 : -45;
+                anchors.fill: parent
+                onClicked: {
+                    // Determine the new target based on the current rotation
+                    if (rpm_needle_nighttime_mod.rotation < 90) {
+                        rpm_animation.to = 225;
+                    } else {
+                        rpm_animation.to = -45;
                     }
+                    rpm_animation.start();
                 }
+            }
 
-                Behavior on rotation {
-                    NumberAnimation {
-                        duration: 2000
-                        easing.type: Easing.InOutSine
-                    }
-                }
+            SpringAnimation {
+                id: rpm_animation
+                target: rpm_needle_nighttime_mod
+                property: "rotation"
+                mass: mass_slider.value
+                spring: spring_slider.value
+                damping: damping_slider.value
 
-                // Add the SpringAnimation
-                SpringAnimation {
-                    target: rpm_needle_nighttime_mod
-                    property: "rotation"
-                    spring: 2
-                    damping: 0.2
-                    modulus: 270  // To keep rotation in the range of [0, 360)
-                }
+                running: false
+            }
         }
     }
-
 }
