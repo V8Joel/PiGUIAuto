@@ -1,10 +1,7 @@
 import QtQuick
 import QtQuick.Window
-import QtQuick.VirtualKeyboard
 import QtQuick.Controls
-import QtCharts
 import QtQuick.Layouts
-
 
 Window {
     id: window
@@ -17,7 +14,7 @@ Window {
 
     RPM {
         antialiasing: true
-        anchors.left:parent.left
+        anchors.left: parent.left
         anchors.leftMargin: 45
         anchors.top: parent.top
         anchors.topMargin: (parent.height - height) / 2
@@ -25,36 +22,6 @@ Window {
         mass: mass_slider.slider_out
         damping: damper_slider.slider_out
         rpm_target: rpm_slider.slider_out
-
-    }
-
-    InputPanel {
-        id: inputPanel
-        z: 99
-        x: 0
-        y: window.height
-        width: window.width
-
-        states: State {
-            name: "visible"
-            when: inputPanel.active
-            PropertyChanges {
-                target: inputPanel
-                y: window.height - inputPanel.height
-            }
-        }
-        transitions: Transition {
-            from: ""
-            to: "visible"
-            reversible: true
-            ParallelAnimation {
-                NumberAnimation {
-                    properties: "y"
-                    duration: 250
-                    easing.type: Easing.InOutQuad
-                }
-            }
-        }
     }
 
     Text {
@@ -84,7 +51,7 @@ Window {
         width: 400
 
         Slider_module {
-           id: spring_slider
+            id: spring_slider
             slider_text: "Spring Constant"
         }
 
@@ -105,7 +72,6 @@ Window {
             slider_max: 325
             slider_step: 1
             slider_initial: 45
-
         }
     }
 }
