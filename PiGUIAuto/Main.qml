@@ -24,22 +24,6 @@ Window {
         rpm_target: rpm_slider.slider_out
     }
 
-    Text {
-        id: click
-        anchors.left: parent.left
-        anchors.top: parent.top
-        anchors.margins: 50
-        width: 250
-        height: 25
-        color: "#ffbb00"
-        text: qsTr("Click the dial:")
-        font.pixelSize: 25
-        horizontalAlignment: Text.AlignHCenter
-        verticalAlignment: Text.AlignVCenter
-        font.weight: Font.Bold
-        font.family: "Courier"
-    }
-
     Column {
         anchors.right: parent.right
         anchors.top: parent.top
