@@ -8,7 +8,7 @@ Item {
     property alias mass : rpm_animation.mass
     property alias spring : rpm_animation.spring
     property alias damping : rpm_animation.damping
-
+    property real rpm_target: 45
 
     Image {
         id: gauge
@@ -26,31 +26,21 @@ Item {
             width: 1000
             height: 1000
             source: "assets/images/rpm_needle_daytime_2_unmod.PNG"
-            rotation: 45
             fillMode: Image.PreserveAspectFit
-
-            MouseArea {
-                anchors.fill: parent
-                onClicked: {
-                    // Determine the new target based on the current rotation
-                    if (rpm_needle.rotation < 180) {
-                        rpm_animation.to = 315;
-                    } else {
-                        rpm_animation.to = 45;
-                    }
-                    rpm_animation.start();
-                }
-            }
-
-            SpringAnimation {
-                id: rpm_animation
-                target: rpm_needle
-                property: "rotation"
-                mass: 1
-                spring: 1
-                damping: 1
-                running: false
-            }
+//            rotation: rpm_target
+        }
+    }
+    Behavior on rpm_target {
+        SpringAnimation {
+            id: rpm_animation
+            target: rpm_needle
+            property: "rotation"
+            to: rpm_target
+            mass: 1
+            spring: 1
+            damping: 1
+//          epsilon: 0.1
+            velocity: 1000
         }
     }
 }

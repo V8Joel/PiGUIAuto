@@ -21,9 +21,10 @@ Window {
         anchors.leftMargin: 45
         anchors.top: parent.top
         anchors.topMargin: (parent.height - height) / 2
-        spring: spring_slider.slider_value
-        mass: mass_slider.slider_value
-        damping: damper_slider.slider_value
+        spring: spring_slider.slider_out
+        mass: mass_slider.slider_out
+        damping: damper_slider.slider_out
+        rpm_target: rpm_slider.slider_out
 
     }
 
@@ -76,8 +77,9 @@ Window {
         anchors.right: parent.right
         anchors.top: parent.top
         anchors.topMargin: (parent.height - height) / 2
-        height: 400
+        height: 550
         id: slider_padding
+        x: 1520
         spacing: 50
         width: 400
 
@@ -94,6 +96,16 @@ Window {
         Slider_module {
             id: damper_slider
             slider_text: "Damper Constant"
+        }
+
+        Slider_module {
+            id: rpm_slider
+            slider_text: "RPM Target"
+            slider_min: 45
+            slider_max: 325
+            slider_step: 1
+            slider_initial: 45
+
         }
     }
 }
