@@ -17,7 +17,15 @@ qt_add_qml_module(appPiGUIAuto
     VERSION 1.0
     QML_FILES Main.qml
     RESOURCES assets/images/istockphoto-996396804-170667a.jpg
-
+    RESOURCES assets/icons/icon_settings-100.png
+    RESOURCES assets/images/BMW-1-Series-Design-Sketch-removebg-preview.png
+    RESOURCES assets/icons/icon_settings_white_48.png
+    RESOURCES assets/icons/icons-door-lock-48.png
+    RESOURCES assets/gif/icon-settings_gif.gif
+    RESOURCES assets/icons/icon-hazard-warning-flasher-50.png
+    RESOURCES assets/icons/icon-flame.png
+    RESOURCES assets/icons/icon-cold-blue-48.png
+    RESOURCES assets/images/Image_BMW_Silver.png
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
