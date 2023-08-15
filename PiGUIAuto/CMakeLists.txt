@@ -16,15 +16,17 @@ qt_add_qml_module(appPiGUIAuto
     URI PiGUIAuto
     VERSION 1.0
     QML_FILES Main.qml
-    RESOURCES assets/images/istockphoto-996396804-170667a.jpg
-
+    RESOURCES assets/Icons/icon-cold.png assets/Icons/icon-door-lock.png assets/Icons/icon-hazard.png assets/Icons/icon-heater.png assets/Icons/icon-locked.png assets/Icons/icon-settings.png assets/Images/Image_BMW_Silver.png
+    RESOURCES assets/Icons/icon-home.png
+    SOURCES Controllers/system.h Controllers/system.cpp
+    RESOURCES assets/Icons/icon-unlocked.png
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
 # explicit, fixed bundle identifier manually though.
 set_target_properties(appPiGUIAuto PROPERTIES
-#    MACOSX_BUNDLE_GUI_IDENTIFIER com.example.appPiGUIAuto
+    # MACOSX_BUNDLE_GUI_IDENTIFIER com.example.appPiGUIAuto
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
     MACOSX_BUNDLE TRUE
