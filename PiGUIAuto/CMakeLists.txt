@@ -20,6 +20,7 @@ qt_add_qml_module(appPiGUIAuto
     RESOURCES assets/Icons/icon-home.png
     SOURCES Controllers/system.h Controllers/system.cpp
     RESOURCES assets/Icons/icon-unlocked.png
+    QML_FILES SettingsPage.qml
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

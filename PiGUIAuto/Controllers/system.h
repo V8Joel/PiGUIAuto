@@ -9,6 +9,7 @@ class System : public QObject
     Q_PROPERTY(bool carLocked READ carLocked WRITE setCarLocked NOTIFY carLockedChanged FINAL)
     Q_PROPERTY(int outdoorTemp READ outdoorTemp WRITE setOutdoorTemp NOTIFY outdoorTempChanged FINAL)
     Q_PROPERTY(QString userName READ userName WRITE setUserName NOTIFY userNameChanged FINAL)
+
 public:
     System(QObject *parent = nullptr);
 
@@ -33,6 +34,7 @@ signals:
     void outdoorTempChanged(int outdoorTemp);
 
     void userNameChanged(QString userName);
+
 private:
     bool m_carLocked;
     int m_outdoorTemp;
