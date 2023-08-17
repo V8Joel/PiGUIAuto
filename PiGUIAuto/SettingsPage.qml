@@ -34,56 +34,6 @@ Rectangle {
         }
 
         Rectangle {
-            id: topBar
-            x: 0
-            y: 0
-            anchors.top: parent.top
-            gradient: Gradient {
-                orientation: Gradient.Vertical
-                GradientStop {
-                    position: 1
-                    color: "#434343"
-                }
-
-                GradientStop {
-                    position: 0
-                    color: "#000000"
-                }
-
-                GradientStop {
-                    position: 0.55251
-                    color: "#434343"
-                }
-            }
-            anchors.left: parent.left
-            anchors.right: parent.right
-            width: parent.width
-            height: parent.height / 20
-            color: "#ffffff"
-
-            Text {
-                id: dateTime
-                x: -65
-                y: 14
-                color: "#ffffff"
-                anchors.centerIn: parent
-                text: new Date().toLocaleString()
-                font.pixelSize: 20
-                anchors.verticalCenterOffset: 1
-                anchors.horizontalCenterOffset: -774
-            }
-            Image {
-                id: iconLocked
-                x: 17
-                y: 8
-                width: 35
-                height: 38
-                fillMode: Image.PreserveAspectFit
-                source: (systemHandler.carLocked ? "assets/Icons/icon-locked.png" : "assets/Icons/icon-unlocked.png")
-            }
-        }
-
-        Rectangle {
             id: bottomBar
             x: 0
             y: 872
@@ -192,7 +142,6 @@ Rectangle {
                     id: mouseAreaSettings
                     anchors.fill: parent
                 }
-
             }
 
             Slider {
@@ -216,7 +165,7 @@ Rectangle {
                 MouseArea {
                     id: mouseAreaHome
                     anchors.fill: parent
-                    onClicked: stackView.pop();
+                    onClicked: stackView.pop()
                 }
             }
         }
