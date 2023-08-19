@@ -12,11 +12,13 @@ Window {
     color: "#343434"
     title: qsTr("RPM Dial Test")
 
+    signal sliderValueChanged(double newValue)
+
     Component.onCompleted: {
         // Log with timestamp
         console.log(new Date().toISOString(), "SimulinkModel Output:", simulinkModel.test2Output);
-        simulinkModel.setInput(simulink_slider.slider_value);
-        console.log(new Date().toISOString(), "Set input to", simulink_slider.slider_value);
+        simulinkModel.setInput(rpm_slider.slider_value);
+        console.log(new Date().toISOString(), "Set input to", rpm_slider.slider_value);
     }
     RPM {
         antialiasing: true
@@ -35,7 +37,7 @@ Window {
         anchors.top: parent.top
         anchors.topMargin: (parent.height - height) / 2
         anchors.bottomMargin: (parent.height - height) / 2
-        height: 800
+        height: 630
         id: slider_padding
         spacing: 50
         width: 400
@@ -62,15 +64,10 @@ Window {
             slider_max: 325
             slider_step: 1
             slider_initial: 45
-        }
-
-        Slider_module {
-            id: simulink_slider
-            slider_step: 1
-            slider_min: 0
-            slider_initial: 5
-            slider_text: "Output"
-            slider_max: 10
+            onSlider_valueChanged: {
+                console.log(new Date().toISOString(), "Slider value changed:", slider_value);
+                sliderValueChanged(slider_value);
+            }
         }
     }
 }

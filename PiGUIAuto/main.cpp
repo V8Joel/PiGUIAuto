@@ -1,6 +1,8 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
+#include <QQuickItem>
+
 #include "SimulinkModelWrapper.h"
 
 int main(int argc, char *argv[])
@@ -22,8 +24,13 @@ int main(int argc, char *argv[])
         Qt::QueuedConnection);
     engine.loadFromModule("PiGUIAuto", "Main");
 
-    // Since we have exposed simulinkModel as a context property, we don't need to find or connect it anymore.
-    // The connections between QML signals and C++ slots should be set in the QML side.
+    // Get the root QML object
+    QObject* rootObject = engine.rootObjects().first();
+    QQuickItem* mainItem = qobject_cast<QQuickItem*>(rootObject);
+
+    if(mainItem) {
+        QObject::connect(mainItem, SIGNAL(sliderValueChanged(double)), &modelWrapper, SLOT(setInput(double)));
+    }
 
     // Handle application's exit signal
     QObject::connect(&app, &QGuiApplication::aboutToQuit, [&modelWrapper]() {

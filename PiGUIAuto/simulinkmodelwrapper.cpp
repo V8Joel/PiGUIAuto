@@ -1,5 +1,6 @@
 #include "SimulinkModelWrapper.h"
 #include <QDebug>
+#include <QDateTime>
 
 SimulinkModelWrapper::SimulinkModelWrapper(QObject *parent)
     : QObject(parent)
@@ -42,9 +43,8 @@ double SimulinkModelWrapper::getStepTime() const
 void SimulinkModelWrapper::executeStep()
 {
     m_model.step();
-    qDebug() << "Executed Step. Current Output:" << test2Output();
-    // If there are other post-step operations or signals you want to emit after each step,
-    // add them here.
+    QString timestamp = QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss.zzz");
+    qDebug() << timestamp << "- Executed Step. Current Output:" << test2Output();
 }
 
 void SimulinkModelWrapper::shutdown()
