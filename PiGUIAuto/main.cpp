@@ -15,10 +15,10 @@ int main(int argc, char *argv[])
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreationFailed,
         &app, []() { QCoreApplication::exit(-1); },
         Qt::QueuedConnection);
-    engine.loadFromModule("PiGUIAuto", "Main");
-
     QQmlContext * context( engine.rootContext() );
     context->setContextProperty("systemHandler", &m_systemHandler);
+
+    engine.loadFromModule("PiGUIAuto", "Main");
 
     return app.exec();
 }
