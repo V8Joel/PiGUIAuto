@@ -13,12 +13,11 @@ Window {
     title: qsTr("RPM Dial Test")
 
     Component.onCompleted: {
-        console.log("SimulinkModel Output:", simulinkModel.test2Output);
-        // Or when setting an input
-        simulinkModel.setInput(5.0);
-        console.log("Set input to 5.0");
+        // Log with timestamp
+        console.log(new Date().toISOString(), "SimulinkModel Output:", simulinkModel.test2Output);
+        simulinkModel.setInput(simulink_slider.slider_value);
+        console.log(new Date().toISOString(), "Set input to", simulink_slider.slider_value);
     }
-
     RPM {
         antialiasing: true
         anchors.left: parent.left
@@ -28,7 +27,7 @@ Window {
         spring: spring_slider.slider_out
         mass: mass_slider.slider_out
         damping: damper_slider.slider_out
-        rpm_target: rpm_slider.slider_out
+        rpm_target: simulinkModel.test2Output
     }
 
     Column {

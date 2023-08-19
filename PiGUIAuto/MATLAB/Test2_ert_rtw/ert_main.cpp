@@ -6,9 +6,9 @@
 //
 // Code generated for Simulink model 'Test2'.
 //
-// Model version                  : 6.3
+// Model version                  : 6.4
 // Simulink Coder version         : 23.2 (R2023b) 19-May-2023
-// C/C++ source code generated on : Sat Aug 19 14:08:34 2023
+// C/C++ source code generated on : Sat Aug 19 19:11:33 2023
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: ARM Compatible->ARM Cortex-A (64-bit)
@@ -81,7 +81,7 @@ int_T main(int_T argc, const char *argv[])
   rtObj.initialize();
 
   // Attach rt_OneStep to a timer or interrupt service routine with
-  //  period 0.01 seconds (base rate of the model) here.
+  //  period 0.1 seconds (base rate of the model) here.
   //  The call syntax for rt_OneStep is
   //
   //   rt_OneStep();

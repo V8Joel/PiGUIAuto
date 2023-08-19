@@ -46,3 +46,16 @@ void SimulinkModelWrapper::executeStep()
     // If there are other post-step operations or signals you want to emit after each step,
     // add them here.
 }
+
+void SimulinkModelWrapper::shutdown()
+{
+    // Stop the QTimer
+    if(m_step_timer->isActive()) {
+        m_step_timer->stop();
+    }
+
+    // Call the terminate function of the Test2 model
+    m_model.terminate();
+
+    qDebug() << "SimulinkModelWrapper shutdown completed.";
+}

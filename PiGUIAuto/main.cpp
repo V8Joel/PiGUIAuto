@@ -25,5 +25,10 @@ int main(int argc, char *argv[])
     // Since we have exposed simulinkModel as a context property, we don't need to find or connect it anymore.
     // The connections between QML signals and C++ slots should be set in the QML side.
 
+    // Handle application's exit signal
+    QObject::connect(&app, &QGuiApplication::aboutToQuit, [&modelWrapper]() {
+        modelWrapper.shutdown();
+    });
+
     return app.exec();
 }

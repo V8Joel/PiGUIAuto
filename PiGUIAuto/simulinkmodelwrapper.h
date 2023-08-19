@@ -19,6 +19,8 @@ public:
     double test2Output() const;
     double getStepTime() const;
 
+    void shutdown();
+
 public slots:
     void setInput(double value);
 
