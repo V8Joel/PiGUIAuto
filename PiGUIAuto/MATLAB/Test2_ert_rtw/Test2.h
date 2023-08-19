@@ -6,9 +6,9 @@
 //
 // Code generated for Simulink model 'Test2'.
 //
-// Model version                  : 6.1
+// Model version                  : 6.3
 // Simulink Coder version         : 23.2 (R2023b) 19-May-2023
-// C/C++ source code generated on : Sat Aug 19 11:08:29 2023
+// C/C++ source code generated on : Sat Aug 19 14:08:34 2023
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: ARM Compatible->ARM Cortex-A (64-bit)
@@ -35,12 +35,16 @@ class Test2
   // External outputs (root outports fed by signals with default storage)
   struct ExtY {
     real_T Test2Out;                   // '<Root>/Test2Out'
+    real_T model_step_time_output;     // '<Root>/model_step_time_output'
   };
 
   // Parameters (default storage)
   struct P {
-    real_T Gain_Gain;                  // Expression: 2
+    real_T gainVal;                    // Variable: gainVal
                                           //  Referenced by: '<Root>/Gain'
+
+    real_T model_step_time;            // Variable: model_step_time
+                                          //  Referenced by: '<Root>/Constant'
 
   };
 

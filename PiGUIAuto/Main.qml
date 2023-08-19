@@ -2,8 +2,6 @@ import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Layouts
-import com.mycompany 1.0
-
 
 Window {
     id: window
@@ -14,13 +12,12 @@ Window {
     color: "#343434"
     title: qsTr("RPM Dial Test")
 
-    SimulinkModelWrapper {
-        id: simulinkModel
-        onTest2OutputChanged: {
-            // Handle the change here
-        }
+    Component.onCompleted: {
+        console.log("SimulinkModel Output:", simulinkModel.test2Output);
+        // Or when setting an input
+        simulinkModel.setInput(5.0);
+        console.log("Set input to 5.0");
     }
-
 
     RPM {
         antialiasing: true
@@ -38,9 +35,9 @@ Window {
         anchors.right: parent.right
         anchors.top: parent.top
         anchors.topMargin: (parent.height - height) / 2
-        height: 630
+        anchors.bottomMargin: (parent.height - height) / 2
+        height: 800
         id: slider_padding
-        x: 1520
         spacing: 50
         width: 400
 
@@ -66,6 +63,15 @@ Window {
             slider_max: 325
             slider_step: 1
             slider_initial: 45
+        }
+
+        Slider_module {
+            id: simulink_slider
+            slider_step: 1
+            slider_min: 0
+            slider_initial: 5
+            slider_text: "Output"
+            slider_max: 10
         }
     }
 }

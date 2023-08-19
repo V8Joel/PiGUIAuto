@@ -24,6 +24,7 @@ qt_add_qml_module(appPiGUIAuto
     SOURCES SimulinkModelWrapper.h SimulinkModelWrapper.cpp
     SOURCES MATLAB/Test2_ert_rtw/Test2_data.cpp MATLAB/Test2_ert_rtw/Test2.cpp  MATLAB/Test2_ert_rtw/Test2.h MATLAB/Test2_ert_rtw/Test2_types.h MATLAB/Test2_ert_rtw/Test2_private.h
     SOURCES MATLAB/slprj/ert/_sharedutils/rtwtypes.h
+    RESOURCES MATLAB/Test2_param.sldd
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

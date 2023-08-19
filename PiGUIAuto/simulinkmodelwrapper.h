@@ -2,6 +2,8 @@
 #define SIMULINKMODELWRAPPER_H
 
 #include <QObject>
+#include <QTimer>
+
 #include "MATLAB/Test2_ert_rtw/Test2.h"
 
 class SimulinkModelWrapper : public QObject
@@ -15,6 +17,7 @@ public:
     ~SimulinkModelWrapper();
 
     double test2Output() const;
+    double getStepTime() const;
 
 public slots:
     void setInput(double value);
@@ -23,7 +26,10 @@ signals:
     void test2OutputChanged();
 
 private:
+    void executeStep();  // Declare the private method that will be connected to the timer's timeout signal.
+
     Test2 m_model;
+    QTimer* m_step_timer;  // Declaring as a pointer.
 };
 
 #endif // SIMULINKMODELWRAPPER_H

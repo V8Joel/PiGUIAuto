@@ -6,9 +6,9 @@
 //
 // Code generated for Simulink model 'Test2'.
 //
-// Model version                  : 6.1
+// Model version                  : 6.3
 // Simulink Coder version         : 23.2 (R2023b) 19-May-2023
-// C/C++ source code generated on : Sat Aug 19 11:08:29 2023
+// C/C++ source code generated on : Sat Aug 19 14:08:34 2023
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: ARM Compatible->ARM Cortex-A (64-bit)
