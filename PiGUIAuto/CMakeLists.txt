@@ -16,15 +16,14 @@ qt_add_qml_module(appPiGUIAuto
     URI PiGUIAuto
     VERSION 1.0
     QML_FILES Main.qml
-    RESOURCES assets/images/istockphoto-996396804-170667a.jpg
     QML_FILES
     QML_FILES RPM.qml
     SOURCES RPM.h RPM.cpp
-    RESOURCES assets/images/istockphoto-996396804-170667a.jpg assets/images/mpg_needle_daytime_mod.PNG assets/images/mpg_needle_daytime_unmod.PNG assets/images/mpg_needle_nighttime_mod.PNG assets/images/mpg_needle_nighttime_unmod.PNG assets/images/rpm_face_daytime.PNG assets/images/rpm_face_nighttime.PNG assets/images/rpm_needle_daytime_mod.PNG assets/images/rpm_needle_daytime_unmod.PNG assets/images/rpm_needle_nighttime_mod.PNG assets/images/rpm_needle_nighttime_unmod.PNG
     RESOURCES assets/images/istockphoto-996396804-170667a.jpg assets/images/mpg_needle_daytime_2_unmod.PNG assets/images/mpg_needle_daytime_mod.PNG assets/images/mpg_needle_daytime_unmod.PNG assets/images/mpg_needle_nighttime_mod.PNG assets/images/mpg_needle_nighttime_unmod.PNG assets/images/rpm_face_daytime.PNG assets/images/rpm_face_nighttime.PNG assets/images/rpm_needle_daytime_2_unmod.PNG assets/images/rpm_needle_daytime_mod.PNG assets/images/rpm_needle_daytime_unmod.PNG assets/images/rpm_needle_nighttime_mod.PNG assets/images/rpm_needle_nighttime_unmod.PNG
     QML_FILES Slider_module.qml
-    RESOURCES
-
+    SOURCES SimulinkModelWrapper.h SimulinkModelWrapper.cpp
+    SOURCES MATLAB/Test2_ert_rtw/Test2_data.cpp MATLAB/Test2_ert_rtw/Test2.cpp  MATLAB/Test2_ert_rtw/Test2.h MATLAB/Test2_ert_rtw/Test2_types.h MATLAB/Test2_ert_rtw/Test2_private.h
+    SOURCES MATLAB/slprj/ert/_sharedutils/rtwtypes.h
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

@@ -3,14 +3,18 @@ import QtQuick.Controls
 
 Rectangle {
     width: 350
-    height: 100
-    color: "white"
+    height: 120
+    color: "grey"
     radius: 20
+    border {
+        width: 5
+        color: "black"
+    }
 
     property real slider_out : Number(value_slider.value.toFixed(2))
 
     property alias slider_text: slider_text.text
-    property alias slider_value: value_slider
+    property alias slider_value: value_slider.value
     property alias slider_min: value_slider.from
     property alias slider_max: value_slider.to
     property alias slider_step: value_slider.stepSize
@@ -20,7 +24,8 @@ Rectangle {
     Text {
         anchors.left: parent.left
         anchors.right: parent.right
-        height: 25
+        anchors.top: parent.top
+        anchors.topMargin: 10
         id: slider_text
         color: "#ffbb00"
         text: qsTr("slider")
@@ -55,6 +60,7 @@ Rectangle {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
+        anchors.bottomMargin: 10
         height: 25
         id: slider_value
         color: "#ffbb00"

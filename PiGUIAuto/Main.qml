@@ -2,6 +2,8 @@ import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Layouts
+import com.mycompany 1.0
+
 
 Window {
     id: window
@@ -11,6 +13,14 @@ Window {
     visible: true
     color: "#343434"
     title: qsTr("RPM Dial Test")
+
+    SimulinkModelWrapper {
+        id: simulinkModel
+        onTest2OutputChanged: {
+            // Handle the change here
+        }
+    }
+
 
     RPM {
         antialiasing: true
@@ -28,7 +38,7 @@ Window {
         anchors.right: parent.right
         anchors.top: parent.top
         anchors.topMargin: (parent.height - height) / 2
-        height: 550
+        height: 630
         id: slider_padding
         x: 1520
         spacing: 50
