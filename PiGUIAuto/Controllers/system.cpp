@@ -36,7 +36,7 @@ bool System::wifiConnection() const
 }
 
 ///////////////////////////////////////////////////////
-void System::setcarLocked(bool carLocked)
+void System::setCarLocked(bool carLocked)
 {
     if (m_carLocked == carLocked)
         return;
@@ -61,7 +61,7 @@ void System::setUserName(QString userName)
     emit userNameChanged(m_userName);
 }
 
-void System::setbluetoothConnection(bool BluetoothConnection)
+void System::setBluetoothConnection(bool BluetoothConnection)
 {
     if (m_bluetoothConnection == BluetoothConnection)
         return;

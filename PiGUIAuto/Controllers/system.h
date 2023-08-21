@@ -29,15 +29,15 @@ public:
 
 ///////////////////////////////////////////////////////
 public slots:
-    void setcarLocked(bool carLocked);
+    void setCarLocked(bool carLocked);
 
     void setOutdoorTemp(int outdoorTemp);
 
     void setUserName(QString userName);
 
-    void setbluetoothConnection(bool BluetoothConnection);
+    void setBluetoothConnection(bool BluetoothConnection);
 
-    void setWifiConnection(bool newWifiConnection);
+    void setWifiConnection(bool WifiConnection);
 
 ///////////////////////////////////////////////////////
 signals:
@@ -50,7 +50,7 @@ signals:
 
     void bluetoothConnectionChanged(bool BluetoothConnection );
 
-    void wifiConnectionChanged();
+    void wifiConnectionChanged(bool WifiConnection);
 ///////////////////////////////////////////////////////
 private:
     bool m_carLocked;

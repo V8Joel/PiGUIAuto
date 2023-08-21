@@ -137,6 +137,7 @@ Rectangle {
         MouseArea {
             id: mouseAreaHome
             anchors.fill: parent
+            onClicked: stackView.pop()
         }
     }
 }

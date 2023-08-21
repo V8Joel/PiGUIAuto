@@ -1,7 +1,6 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Window
-import com.example.appPiGUIAuto 1.0
 
 Window {
     visible: true
@@ -15,15 +14,15 @@ Window {
         anchors.fill: parent
     }
 
-    TopBar{
+    TopBar {
         anchors.top: parent.top
-        anchors.left: parent .left
+        anchors.left: parent.left
         anchors.right: parent.right
     }
 
-    BottomBar{
+    BottomBar {
         anchors.bottom: parent.bottom
-        anchors.left: parent .left
+        anchors.left: parent.left
         anchors.right: parent.right
     }
 
@@ -87,12 +86,10 @@ Window {
                     id: carplayMouseArea
                     anchors.fill: parent
                     onClicked: {
-                        // Call the launchCarPlay function from the carplayLauncher module
-                        carplayLauncher.launchCarPlay(androidContext);
+
                     }
                 }
             }
         }
     }
 }
-
