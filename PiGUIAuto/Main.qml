@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Window
+import com.example.appPiGUIAuto 1.0
 
 Window {
     visible: true
@@ -25,7 +26,6 @@ Window {
         anchors.left: parent .left
         anchors.right: parent.right
     }
-
 
     Rectangle {
         id: mainPage
@@ -59,7 +59,6 @@ Window {
                 }
             }
 
-
             Image {
                 id: bmwImage
                 x: -270
@@ -72,9 +71,28 @@ Window {
                 sourceSize.width: 1920
                 fillMode: Image.Pad
             }
+
+            Image {
+                id: iconCarplay
+                x: 1267
+                y: 144
+                width: 116
+                height: 121
+                source: "assets/images/apple-carplay.png"
+                sourceSize.height: 150
+                sourceSize.width: 150
+                fillMode: Image.PreserveAspectCrop
+
+                MouseArea {
+                    id: carplayMouseArea
+                    anchors.fill: parent
+                    onClicked: {
+                        // Call the launchCarPlay function from the carplayLauncher module
+                        carplayLauncher.launchCarPlay(androidContext);
+                    }
+                }
+            }
         }
     }
-
-
 }
 

@@ -80,7 +80,7 @@ Rectangle {
             anchors.left: iconRow.left
             anchors.top: parent.top
             anchors.bottom: parent.bottom
-            source: "assets/Icons/icon-wifi-disconnected.png"
+            source: ( systemHandler.wifiStatus) ? "assets/Icons/icon-wifi-connected.png" : "assets/Icons/icon-wifi-disconnected.png"
             fillMode: Image.PreserveAspectFit
         }
 
@@ -90,7 +90,7 @@ Rectangle {
             anchors.left: iconWifi.right
             anchors.top: parent.top
             anchors.bottom: parent.bottom
-            source: "assets/Icons/icon-bluetooth-unconnected.png"
+            source: ( systemHandler.bluetoothStatus) ? "assets/Icons/icon-bluetooth-connected.png" : "assets/Icons/icon-bluetooth-unconnected.png"
             fillMode: Image.PreserveAspectFit
         }
 
@@ -100,7 +100,10 @@ Rectangle {
             anchors.left: iconBluetooth.right
             anchors.top: parent.top
             anchors.bottom: parent.bottom
-            source: "assets/Icons/icon-low-signal.png"
+            source: systemHandler.signalStrength === "low" ? "assets/Icons/icon-low-signal.png" :
+                        systemHandler.signalStrength === "mid" ? "assets/Icons/icon-signal-mid.png" :
+                        systemHandler.signalStrength === "strong" ? "assets/Icons/icon-signal-strong.png" :
+                        ""
             fillMode: Image.PreserveAspectFit
         }
 
@@ -110,8 +113,10 @@ Rectangle {
             anchors.left: iconSignal.right
             anchors.top: iconSignal.bottom
             anchors.bottom: parent.bottom
-            source: "assets/Icons/icon-battery-charging.png"
-            anchors.leftMargin: 7
+            source: systemHandler.batteryCharge === "low" ? "assets/Icons/icon-battery-low.png" :
+                        systemHandler.batteryCharge === "charging" ? "assets/Icons/icon-battery-charging.png" :
+                           systemHandler.batteryCharge === "connected" ? "assets/Icons/icon-battery.png" :
+                        ""
             anchors.topMargin: -48
             fillMode: Image.PreserveAspectFit
         }
