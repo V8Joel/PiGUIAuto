@@ -1,24 +1,23 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-#include <Controllers/system.h>
 #include <QQmlContext>
+#include <QJniObject>
+#include <Controllers/system.h>
 
 int main(int argc, char *argv[])
 {
-    qputenv("QT_IM_MODULE", QByteArray("qtvirtualkeyboard"));
-
     QGuiApplication app(argc, argv);
 
     System m_systemHandler;
 
     QQmlApplicationEngine engine;
-    QObject::connect(&engine, &QQmlApplicationEngine::objectCreationFailed,
-        &app, []() { QCoreApplication::exit(-1); },
-        Qt::QueuedConnection);
-    engine.loadFromModule("PiGUIAuto", "Main");
 
-    QQmlContext * context( engine.rootContext() );
+    QQmlContext *context = engine.rootContext();
     context->setContextProperty("systemHandler", &m_systemHandler);
+
+    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+    if (engine.rootObjects().isEmpty())
+        return -1;
 
     return app.exec();
 }
