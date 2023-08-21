@@ -6,6 +6,9 @@ Rectangle {
     id: topBar
     x: 0
     y: 0
+    width: 1920
+    height: 1080/20
+    anchors.top: parent.top
     gradient: Gradient {
         orientation: Gradient.Vertical
         GradientStop {
@@ -23,36 +26,9 @@ Rectangle {
             color: "#434343"
         }
     }
-    width: 1920
-    height: 1080 / 20
+    anchors.left: parent.left
+    anchors.right: parent.right
     color: "#ffffff"
-
-    Text {
-        id: dateTime
-        x: -65
-        y: 14
-        color: "#ffffff"
-        anchors.centerIn: parent
-        text: {
-            var now = new Date()
-            var day = now.getDate()
-            var month = now.getMonth() + 1
-            // Months are zero-indexed
-            var year = now.getFullYear()
-            var hours = now.getHours()
-            var minutes = now.getMinutes()
-
-            // Format the time components to have leading zeros if needed
-            var formattedTime = (hours < 10 ? "0" : "") + hours + ":"
-                    + (minutes < 10 ? "0" : "") + minutes
-
-            // Format the date and time in short form
-            return day + "/" + month + "/" + year + " " + formattedTime
-        }
-        font.pixelSize: 20
-        anchors.verticalCenterOffset: 1
-        anchors.horizontalCenterOffset: -774
-    }
 
     Image {
         id: iconLocked
@@ -60,27 +36,116 @@ Rectangle {
         y: 8
         width: 35
         height: 38
-        source: ( systemHandler.carLocked ? "assets/Icons/icon-locked.png" : "assets/Icons/icon-unlocked.png" )
         fillMode: Image.PreserveAspectFit
+        source: (systemHandler.carLocked ? "assets/Icons/icon-locked.png" : "assets/Icons/icon-unlocked.png")
+    }
+
+    Row {
+        id: iconRow
+        width: 400
+        anchors.top: parent.top
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        spacing: 0
+
+        Text {
+            id: dateTime
+            width: 150
+            anchors.left: iconBattery.right
+            font.pointSize: 20
+            anchors.leftMargin: 15
+            color: "#ffffff"
+            text: {
+                var now = new Date()
+                var day = now.getDate()
+                var month = now.getMonth() + 1
+                // Months are zero-indexed
+                var year = now.getFullYear()
+                var hours = now.getHours()
+                var minutes = now.getMinutes()
+
+                // Format the time components to have leading zeros if needed
+                var formattedTime = (hours < 10 ? "0" : "") + hours + ":"
+                        + (minutes < 10 ? "0" : "") + minutes
+
+                // Format the date and time in short form
+                return day + "/" + month + "/" + year + " " + formattedTime
+            }
+            anchors.verticalCenter: parent.verticalCenter
+        }
+
+        Image {
+            id: iconWifi
+            width: 35
+            anchors.left: iconRow.left
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            source: ( systemHandler.wifiStatus) ? "assets/Icons/icon-wifi-connected.png" : "assets/Icons/icon-wifi-disconnected.png"
+            fillMode: Image.PreserveAspectFit
+        }
+
+        Image {
+            id: iconBluetooth
+            width: 35
+            anchors.left: iconWifi.right
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            source: ( systemHandler.bluetoothStatus) ? "assets/Icons/icon-bluetooth-connected.png" : "assets/Icons/icon-bluetooth-unconnected.png"
+            fillMode: Image.PreserveAspectFit
+        }
+
+        Image {
+            id: iconSignal
+            width: 35
+            anchors.left: iconBluetooth.right
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            source: systemHandler.signalStrength === "low" ? "assets/Icons/icon-low-signal.png" :
+                        systemHandler.signalStrength === "mid" ? "assets/Icons/icon-signal-mid.png" :
+                        systemHandler.signalStrength === "strong" ? "assets/Icons/icon-signal-strong.png" :
+                        ""
+            fillMode: Image.PreserveAspectFit
+        }
+
+        Image {
+            id: iconBattery
+            width: 35
+            anchors.left: iconSignal.right
+            anchors.top: iconSignal.bottom
+            anchors.bottom: parent.bottom
+            source: systemHandler.batteryCharge === "low" ? "assets/Icons/icon-battery-low.png" :
+                        systemHandler.batteryCharge === "charging" ? "assets/Icons/icon-battery-charging.png" :
+                           systemHandler.batteryCharge === "connected" ? "assets/Icons/icon-battery.png" :
+                        ""
+            anchors.topMargin: -48
+            fillMode: Image.PreserveAspectFit
+        }
+
     }
 
     Image {
-        id: iconWifi
-        x: 1808
-        y: 8
-        width: 35
-        height: 38
-        source: ( systemHandler.wifiConnection) ? "assets/Icons/icon-wifi-disconnected.png" : "assets/Icons/icon-wifi-connected.png"
-        fillMode: Image.PreserveAspectFit
-    }
+        id: iconUser
+        x: 52
+        width: 41
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        source: "assets/Icons/icon-user.png"
+        sourceSize.height: 60
+        sourceSize.width: 60
+        anchors.bottomMargin: 9
+        anchors.topMargin: 0
+        fillMode: Image.Stretch
 
-    Image {
-        id: iconBluetooth
-        x: 1849
-        y: 8
-        width: 35
-        height: 38
-        source: ( systemHandler.bluetoothConnection) ? "assets/Icons/icon-bluetooth-disconnected.png" : "assets/Icons/icon-bluetooth-connected.png"
-        fillMode: Image.PreserveAspectFit
+        Text {
+            id: userName
+            anchors.left: iconUser.right
+            color: "#ffffff"
+            text: qsTr(systemHandler.userName)
+            anchors.verticalCenter: iconUser.verticalCenter
+            font.pixelSize: 20
+            anchors.leftMargin: -6
+            anchors.verticalCenterOffset: 0
+        }
     }
 }
+
