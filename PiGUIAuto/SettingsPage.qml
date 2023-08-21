@@ -1,8 +1,13 @@
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Window
 
 Rectangle {
     id: settingsPage
+    x: 0
+    y: 0
+    width: 1920
+    height: 1080
     Rectangle {
         id: mainWindow
         x: 0
@@ -44,6 +49,47 @@ Rectangle {
             anchors.bottom: parent.bottom
             anchors.left: parent .left
             anchors.right: parent.right
+        }
+
+        SwipeView {
+            id: swipeView
+            x: 30
+            y: 118
+            width: parent.width
+            height: parent.height/1.5
+            currentIndex: 0
+
+            Item{
+                id: settingsMenu1
+                    Image {
+                        id: wifiSettings
+                        source: "assets/images/wifi.png"
+                        width: parent.width/3
+                        height: parent.height
+                    }
+
+                }
+
+            Item{
+                id: settingsMenu2
+                Image {
+                    id: bluetoothSettings
+                    source: "assets/images/bluetooth.png"
+                    width: parent.width/3
+                    height: parent.height
+                }
+            }
+
+            Item{
+                id: audioMenu
+                Rectangle{
+                    width: parent.width/3
+                    height: parent.height
+
+                }
+            }
+
+
         }
 
     }
