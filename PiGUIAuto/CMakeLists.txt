@@ -28,7 +28,6 @@ qt_add_qml_module(appPiGUIAuto
     RESOURCES assets/images/wifi.png
     RESOURCES assets/images/bluetooth.png
     RESOURCES assets/images/apple-carplay.png
-    RESOURCES CarplayAPK/carplay.apk
     SOURCES Controllers/APKBinder.cpp Controllers/APKBinder.h
     RESOURCES android/gradle/wrapper/gradle-wrapper.jar android/gradle/wrapper/gradle-wrapper.properties android/res/values/libs.xml android/AndroidManifest.xml android/build.gradle android/gradle.properties android/gradlew android/gradlew.bat
     RESOURCES android/src/QtAndroidService.java
