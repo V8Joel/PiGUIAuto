@@ -11,12 +11,9 @@ int main(int argc, char *argv[])
 
     QGuiApplication app(argc, argv);
 
-    // Create an instance of your SimulinkModelWrapper
-    SimulinkModelWrapper modelWrapper;
-
     QQmlApplicationEngine engine;
 
-    // Set the SimulinkModelWrapper instance as a context property
+    SimulinkModelWrapper modelWrapper;
     engine.rootContext()->setContextProperty("simulinkModel", &modelWrapper);
 
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreationFailed,
@@ -24,18 +21,26 @@ int main(int argc, char *argv[])
         Qt::QueuedConnection);
     engine.loadFromModule("PiGUIAuto", "Main");
 
-    // Get the root QML object
-    QObject* rootObject = engine.rootObjects().first();
-    QQuickItem* mainItem = qobject_cast<QQuickItem*>(rootObject);
+    // Get the root QML object without detaching temporary
+    auto rootObjects = engine.rootObjects();
+    if (!rootObjects.isEmpty()) {
+        QObject* rootObject = rootObjects.first();
+        QQuickItem* mainItem = qobject_cast<QQuickItem*>(rootObject);
 
-    if(mainItem) {
-        QObject::connect(mainItem, SIGNAL(sliderValueChanged(double)), &modelWrapper, SLOT(setInput(double)));
+        if(mainItem) {
+
+        }
     }
 
-    // Handle application's exit signal
-    QObject::connect(&app, &QGuiApplication::aboutToQuit, [&modelWrapper]() {
+    // Handle application's exit signal with a context
+    QObject::connect(&app, &QGuiApplication::aboutToQuit, &modelWrapper, [&modelWrapper]() {
         modelWrapper.shutdown();
+
     });
+
+    QObject::connect(&engine, &QQmlApplicationEngine::objectCreationFailed,
+        &app, []() { QCoreApplication::exit(-1); },
+        Qt::QueuedConnection);
 
     return app.exec();
 }

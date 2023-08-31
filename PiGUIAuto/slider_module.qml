@@ -11,7 +11,7 @@ Rectangle {
         color: "black"
     }
 
-    property real slider_out : Number(value_slider.value.toFixed(2))
+    property double slider_out : Number(value_slider.value.toFixed(2))
 
     property alias slider_text: slider_text.text
     property alias slider_value: value_slider.value

@@ -3,35 +3,35 @@
 
 #include <QObject>
 #include <QTimer>
-
-#include "MATLAB/Test2_ert_rtw/Test2.h"
+#include <QThread>
+#include "ClusterControl.h" // Include the Simulink-generated header
 
 class SimulinkModelWrapper : public QObject
 {
     Q_OBJECT
-
-    Q_PROPERTY(double test2Output READ test2Output NOTIFY test2OutputChanged)
+    Q_PROPERTY(double rpmInput READ rpmInput WRITE setRpmInput NOTIFY rpmInputChanged)
+    Q_PROPERTY(double rpmOutput READ rpmOutput NOTIFY rpmOutputChanged)
 
 public:
-    explicit SimulinkModelWrapper(QObject *parent = nullptr);
+    SimulinkModelWrapper(QObject* parent = nullptr);
     ~SimulinkModelWrapper();
 
-    double test2Output() const;
-    double getStepTime() const;
-
+public slots:
+    void stepModel();
+    void setRpmInput(double rpm);
+    double rpmInput() const;
+    double rpmOutput() const;
     void shutdown();
 
-public slots:
-    void setInput(double value);
-
-signals:
-    void test2OutputChanged();
+signals: // Declare the signal here
+    void stopTimerSignal();
+    void rpmInputChanged(double rpm);
+    void rpmOutputChanged(double rpm);
 
 private:
-    void executeStep();  // Declare the private method that will be connected to the timer's timeout signal.
-
-    Test2 m_model;
-    QTimer* m_step_timer;  // Declaring as a pointer.
+    BenchTest::ClusterControl model;
+    QThread* simulinkThread;
+    QTimer* timer;
 };
 
 #endif // SIMULINKMODELWRAPPER_H

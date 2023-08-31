@@ -12,14 +12,12 @@ Window {
     color: "#343434"
     title: qsTr("RPM Dial Test")
 
-    signal sliderValueChanged(double newValue)
-
     Component.onCompleted: {
-        // Log with timestamp
-        console.log(new Date().toISOString(), "SimulinkModel Output:", simulinkModel.test2Output);
-        simulinkModel.setInput(rpm_slider.slider_value);
+        console.log(new Date().toISOString(), "SimulinkModel Output:", simulinkModel.rpmOutput);
+        simulinkModel.setRpmInput(rpm_slider.slider_value);
         console.log(new Date().toISOString(), "Set input to", rpm_slider.slider_value);
     }
+
     RPM {
         antialiasing: true
         anchors.left: parent.left
@@ -29,7 +27,14 @@ Window {
         spring: spring_slider.slider_out
         mass: mass_slider.slider_out
         damping: damper_slider.slider_out
-        rpm_target: simulinkModel.test2Output
+        rpm_target: simulinkModel.rpmOutput // bound to C++ wrapper
+    }
+
+    Connections {
+        target: simulinkModel
+        function onRpmOutputChanged(newVal) {
+            rpm_target = newVal; // Assuming rpm_target is bound to the QML element that shows RPM
+        }
     }
 
     Column {
@@ -66,7 +71,7 @@ Window {
             slider_initial: 45
             onSlider_valueChanged: {
                 console.log(new Date().toISOString(), "Slider value changed:", slider_value);
-                sliderValueChanged(slider_value);
+                simulinkModel.setRpmInput(slider_value); // directly setting via C++ wrapper
             }
         }
     }

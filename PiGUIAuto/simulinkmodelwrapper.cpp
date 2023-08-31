@@ -1,61 +1,56 @@
 #include "SimulinkModelWrapper.h"
 #include <QDebug>
-#include <QDateTime>
 
-SimulinkModelWrapper::SimulinkModelWrapper(QObject *parent)
-    : QObject(parent)
+SimulinkModelWrapper::SimulinkModelWrapper(QObject* parent)
+    : QObject(parent), timer(new QTimer)
 {
-    // Initialize the Test2 model
-    m_model.initialize();
+    model.Initialize();
 
-    m_step_timer = new QTimer(this);  // Create a new QTimer object and set its parent to `this`.
+    // Set up the timer
+    timer->setInterval(100); // 10Hz
+    timer->setTimerType(Qt::PreciseTimer);
 
-    // Connect the timer to execute the step function of the model
-    connect(m_step_timer, &QTimer::timeout, this, &SimulinkModelWrapper::executeStep);
+    connect(timer, &QTimer::timeout, this, &SimulinkModelWrapper::stepModel);
+    connect(this, &SimulinkModelWrapper::rpmInputChanged, this, &SimulinkModelWrapper::stepModel);
 
-    // Start the timer using the model's step time (converted from seconds to milliseconds)
-    m_step_timer->start(static_cast<int>(getStepTime() * 1000));
+    timer->start();
 }
+
 
 SimulinkModelWrapper::~SimulinkModelWrapper()
 {
-    // The QTimer will be automatically deleted since it has this QObject as its parent.
-    // If there are additional resources you want to release, you can do so here.
+    emit stopTimerSignal(); // Emit the signal to stop the timer
+    timer->stop(); // Explicitly stop the timer here
 }
 
-double SimulinkModelWrapper::test2Output() const
+double SimulinkModelWrapper::rpmInput() const
 {
-    return m_model.rtY.Test2Out;
+    return model.ClusterControl_U.RPM_In;
 }
 
-void SimulinkModelWrapper::setInput(double value)
+double SimulinkModelWrapper::rpmOutput() const
 {
-    m_model.rtU.Data2In = value;
-    qDebug() << "Setting Input:" << value;
-    emit test2OutputChanged();
+    return model.ClusterControl_Y.RPM_Out;
 }
 
-double SimulinkModelWrapper::getStepTime() const
+void SimulinkModelWrapper::setRpmInput(double rpm)
 {
-    return m_model.rtP.model_step_time;
+    if(model.ClusterControl_U.RPM_In != rpm) {
+        model.ClusterControl_U.RPM_In = rpm;
+        emit rpmInputChanged(rpm);
+    }
 }
 
-void SimulinkModelWrapper::executeStep()
+void SimulinkModelWrapper::stepModel()
 {
-    m_model.step();
-    QString timestamp = QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss.zzz");
-    qDebug() << timestamp << "- Executed Step. Current Output:" << test2Output();
+    model.Model_Step_10Hz();
+    emit rpmOutputChanged(model.ClusterControl_Y.RPM_Out);
 }
 
 void SimulinkModelWrapper::shutdown()
 {
-    // Stop the QTimer
-    if(m_step_timer->isActive()) {
-        m_step_timer->stop();
+    if(timer) {
+        timer->stop();
     }
 
-    // Call the terminate function of the Test2 model
-    m_model.terminate();
-
-    qDebug() << "SimulinkModelWrapper shutdown completed.";
 }

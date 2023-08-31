@@ -1,1 +1,0 @@
-var reportPages = [["Summary","Test2_survey.html"],["Subsystem Report","Test2_subsystems.html"],["Code Interface Report","Test2_interface.html"],["Traceability Report","Test2_trace.html"],["Static Code Metrics Report","Test2_metrics.html"],["Code Replacements Report","Test2_replacements.html"],["Coder Assumptions","Test2_coderassumptions.html"]];
