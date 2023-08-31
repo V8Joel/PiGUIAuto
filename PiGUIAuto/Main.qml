@@ -73,8 +73,8 @@ Window {
 
             Image {
                 id: iconCarplay
-                x: 1267
-                y: 144
+                x: 156
+                y: 474
                 width: 116
                 height: 121
                 source: "assets/images/apple-carplay.png"
@@ -86,7 +86,7 @@ Window {
                     id: carplayMouseArea
                     anchors.fill: parent
                     onClicked: {
-
+                        apkbinder.launchApp()
                     }
                 }
             }

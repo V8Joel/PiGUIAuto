@@ -7,7 +7,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(Qt6 6.5 REQUIRED COMPONENTS Quick)
 find_package(Qt6 REQUIRED COMPONENTS Core)
 
-
 qt_standard_project_setup(REQUIRES 6.5)
 
 qt_add_executable(appPiGUIAuto
@@ -29,6 +28,11 @@ qt_add_qml_module(appPiGUIAuto
     RESOURCES assets/images/wifi.png
     RESOURCES assets/images/bluetooth.png
     RESOURCES assets/images/apple-carplay.png
+    RESOURCES CarplayAPK/carplay.apk
+    SOURCES Controllers/APKBinder.cpp Controllers/APKBinder.h
+    RESOURCES android/gradle/wrapper/gradle-wrapper.jar android/gradle/wrapper/gradle-wrapper.properties android/res/values/libs.xml android/AndroidManifest.xml android/build.gradle android/gradle.properties android/gradlew android/gradlew.bat
+    RESOURCES android/src/QtAndroidService.java
+
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
@@ -40,6 +44,14 @@ set_target_properties(appPiGUIAuto PROPERTIES
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
     MACOSX_BUNDLE TRUE
     WIN32_EXECUTABLE TRUE
+    QT_ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/android
+)
+
+target_link_libraries(appPiGUIAuto PRIVATE
+    Qt6::Core
+    Qt6::Gui
+    Qt6::Qml
+    # ...
 )
 
 target_link_libraries(appPiGUIAuto
@@ -48,6 +60,20 @@ target_link_libraries(appPiGUIAuto
 target_link_libraries(appPiGUIAuto
     PRIVATE Qt6::Core
 )
+
+target_link_libraries(appPiGUIAuto
+    PRIVATE Qt6::CorePrivate
+)
+
+set(ANDROID_PACKAGE_SOURCE_DIR ${PROJECT_SOURCE_DIR}/android CACHE INTERNAL "")
+
+file(GLOB_RECURSE SOURCES
+      ${PROJECT_SOURCE_DIR}/*.cpp
+      ${PROJECT_SOURCE_DIR}/*.qml
+      ${PROJECT_SOURCE_DIR}/*.h
+      ${PROJECT_SOURCE_DIR}/*.qrc
+      ${PROJECT_SOURCE_DIR}/android/AndroidManifest.xml
+    )
 
 include(GNUInstallDirs)
 install(TARGETS appPiGUIAuto
