@@ -14,7 +14,7 @@ Rectangle {
     property double slider_out : Number(value_slider.value.toFixed(2))
 
     property alias slider_text: slider_text.text
-    property alias slider_value: value_slider.value
+    property int slider_value: value_slider.value
     property alias slider_min: value_slider.from
     property alias slider_max: value_slider.to
     property alias slider_step: value_slider.stepSize
@@ -33,7 +33,7 @@ Rectangle {
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
         font.weight: Font.Bold
-        font.family: "Courier"
+        font.family: "Arial"
     }
 
     Slider {
@@ -69,6 +69,6 @@ Rectangle {
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
         font.weight: Font.Bold
-        font.family: "Courier"
+        font.family: "Arial"
     }
 }

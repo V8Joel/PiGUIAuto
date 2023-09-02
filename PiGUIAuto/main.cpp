@@ -2,7 +2,6 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QQuickItem>
-
 #include "SimulinkModelWrapper.h"
 
 int main(int argc, char *argv[])
@@ -14,7 +13,8 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
 
     SimulinkModelWrapper modelWrapper;
-    engine.rootContext()->setContextProperty("simulinkModel", &modelWrapper);
+
+    engine.rootContext()->setContextProperty("modelWrapper", &modelWrapper);
 
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreationFailed,
         &app, []() { QCoreApplication::exit(-1); },
@@ -26,10 +26,6 @@ int main(int argc, char *argv[])
     if (!rootObjects.isEmpty()) {
         QObject* rootObject = rootObjects.first();
         QQuickItem* mainItem = qobject_cast<QQuickItem*>(rootObject);
-
-        if(mainItem) {
-
-        }
     }
 
     // Handle application's exit signal with a context

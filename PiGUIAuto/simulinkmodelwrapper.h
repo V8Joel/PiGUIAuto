@@ -9,29 +9,31 @@
 class SimulinkModelWrapper : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(double rpmInput READ rpmInput WRITE setRpmInput NOTIFY rpmInputChanged)
-    Q_PROPERTY(double rpmOutput READ rpmOutput NOTIFY rpmOutputChanged)
+    Q_PROPERTY(int rpmOut READ rpmOut NOTIFY rpmOutChanged)
+
+
 
 public:
     SimulinkModelWrapper(QObject* parent = nullptr);
     ~SimulinkModelWrapper();
 
+    int rpmOut() const;
+
 public slots:
     void stepModel();
-    void setRpmInput(double rpm);
-    double rpmInput() const;
-    double rpmOutput() const;
     void shutdown();
+    void rpmIn(int32_T sliderRPM);
+    void setRpmOut(int newRpmOut);
 
 signals: // Declare the signal here
     void stopTimerSignal();
-    void rpmInputChanged(double rpm);
-    void rpmOutputChanged(double rpm);
+    void rpmOutChanged();
 
 private:
     BenchTest::ClusterControl model;
-    QThread* simulinkThread;
+//    QThread* simulinkThread;
     QTimer* timer;
+    int m_rpmOut;
 };
 
 #endif // SIMULINKMODELWRAPPER_H

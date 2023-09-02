@@ -6,9 +6,9 @@
 //
 // Code generated for Simulink model 'ClusterControl'.
 //
-// Model version                  : 1.3
+// Model version                  : 1.8
 // Simulink Coder version         : 23.2 (R2023b) 19-May-2023
-// C/C++ source code generated on : Wed Aug 30 20:42:25 2023
+// C/C++ source code generated on : Fri Sep  1 21:03:44 2023
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: ARM Compatible->ARM Cortex-A (64-bit)
@@ -41,30 +41,26 @@ namespace BenchTest
    public:
     // Block signals (default storage)
     struct B_ClusterControl_T {
-      real_T RPM_In;
-      real_T RPM_Raw;
+      int32_T RPM_In;
     };
 
     // External inputs (root inport signals with default storage)
     struct ExtU_ClusterControl_T {
-      real_T RPM_In;                   // '<Root>/RPM_In'
+      int32_T RPM_In;                  // '<Root>/RPM_In'
     };
 
     // External outputs (root outports fed by signals with default storage)
     struct ExtY_ClusterControl_T {
-      real_T RPM_Out;                  // '<Root>/RPM_Out'
+      int32_T RPM_Out;                 // '<Root>/RPM_Out'
     };
 
     // Parameters (default storage)
     struct P_ClusterControl_T {
-      real_T RPM_Out_Y0;               // Computed Parameter: RPM_Out_Y0
+      int32_T RPM_Out_Y0;              // Computed Parameter: RPM_Out_Y0
                                           //  Referenced by: '<S2>/RPM_Out'
 
-      real_T Constant_Value;           // Expression: RPM_Gain
+      int32_T Constant_Value;          // Expression: RPM_Gain
                                           //  Referenced by: '<S2>/Constant'
-
-      real_T RPM_Raw_Y0;               // Computed Parameter: RPM_Raw_Y0
-                                          //  Referenced by: '<S3>/RPM_Raw'
 
     };
 
@@ -85,14 +81,17 @@ namespace BenchTest
     // Tunable parameters
     static P_ClusterControl_T ClusterControl_P;
 
+    // Root inport: '<Root>/RPM_In' set method
+    void setRPM_In(int32_T localArgInput);
+
+    // Root outport: '<Root>/RPM_Out' get method
+    int32_T getRPM_Out() const;
+
     // model initialize function
     void Initialize();
 
     // model step function
     void Model_Step_10Hz();
-
-    // model step function
-    void RPM_Update();
 
     // model terminate function
     static void Terminate();
@@ -130,8 +129,7 @@ namespace BenchTest
 //  '<Root>' : 'ClusterControl'
 //  '<S1>'   : 'ClusterControl/Initialize Function'
 //  '<S2>'   : 'ClusterControl/Model_Step'
-//  '<S3>'   : 'ClusterControl/RPM_Intake'
-//  '<S4>'   : 'ClusterControl/Terminate Function'
+//  '<S3>'   : 'ClusterControl/Terminate Function'
 
 #endif                                 // RTW_HEADER_ClusterControl_h_
 

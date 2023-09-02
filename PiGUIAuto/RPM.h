@@ -6,6 +6,7 @@ class RPM
 {
 public:
     RPM();
+
 };
 
 #endif // RPM_H
