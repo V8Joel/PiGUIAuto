@@ -6,9 +6,9 @@
 //
 // Code generated for Simulink model 'ClusterControl'.
 //
-// Model version                  : 1.8
+// Model version                  : 1.9
 // Simulink Coder version         : 23.2 (R2023b) 19-May-2023
-// C/C++ source code generated on : Fri Sep  1 21:03:44 2023
+// C/C++ source code generated on : Sat Sep  2 15:52:27 2023
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: ARM Compatible->ARM Cortex-A (64-bit)
@@ -57,10 +57,10 @@ namespace BenchTest
     // Parameters (default storage)
     struct P_ClusterControl_T {
       int32_T RPM_Out_Y0;              // Computed Parameter: RPM_Out_Y0
-                                          //  Referenced by: '<S2>/RPM_Out'
+                                          //  Referenced by: '<S3>/RPM_Out'
 
       int32_T Constant_Value;          // Expression: RPM_Gain
-                                          //  Referenced by: '<S2>/Constant'
+                                          //  Referenced by: '<S3>/Constant'
 
     };
 
@@ -92,6 +92,9 @@ namespace BenchTest
 
     // model step function
     void Model_Step_10Hz();
+
+    // model step function
+    void Model_Step_100Hz();
 
     // model terminate function
     static void Terminate();
@@ -129,7 +132,8 @@ namespace BenchTest
 //  '<Root>' : 'ClusterControl'
 //  '<S1>'   : 'ClusterControl/Initialize Function'
 //  '<S2>'   : 'ClusterControl/Model_Step'
-//  '<S3>'   : 'ClusterControl/Terminate Function'
+//  '<S3>'   : 'ClusterControl/Model_Step1'
+//  '<S4>'   : 'ClusterControl/Terminate Function'
 
 #endif                                 // RTW_HEADER_ClusterControl_h_
 
