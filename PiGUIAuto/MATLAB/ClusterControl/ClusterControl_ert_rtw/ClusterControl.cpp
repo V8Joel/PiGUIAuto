@@ -6,9 +6,9 @@
 //
 // Code generated for Simulink model 'ClusterControl'.
 //
-// Model version                  : 1.9
+// Model version                  : 1.17
 // Simulink Coder version         : 23.2 (R2023b) 19-May-2023
-// C/C++ source code generated on : Sat Sep  2 15:52:27 2023
+// C/C++ source code generated on : Sat Sep  9 16:59:04 2023
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: ARM Compatible->ARM Cortex-A (64-bit)
@@ -16,46 +16,89 @@
 // Validation result: Not run
 //
 #include "ClusterControl.h"
+#include <cmath>
+
+extern "C"
+{
+
+#include "rt_nonfinite.h"
+
+}
+
+#include "rtwtypes.h"
+#include "Single_Degree_of_Freedom.h"
+
+namespace BenchTest
+{
+  // Output and update for Simulink Function: '<Root>/Model_Step10'
+  void ClusterControl::Model_Step_10Hz()
+  {
+  }
+}
 
 namespace BenchTest
 {
   // Model step function
-  void ClusterControl::Model_Step_10Hz()
-  {
-    // (no output/update code required)
-  }
-
-  // Model step function
   void ClusterControl::Model_Step_100Hz()
   {
-    // Outputs for Function Call SubSystem: '<Root>/Model_Step1'
-    // SignalConversion generated from: '<S3>/RPM_Raw' incorporates:
+    real_T u;
+    real_T v;
+
+    // Outputs for Atomic SubSystem: '<Root>/Model_Step100'
+    // DataTypeConversion: '<S3>/Data Type Conversion1' incorporates:
     //   Inport: '<Root>/RPM_In'
 
-    ClusterControl_B.RPM_In = ClusterControl_U.RPM_In;
+    ClusterControl_B.Input = ClusterControl_U.RPM_In;
+
+    // ModelReference: '<S3>/Model'
+    ModelMDLOBJ1.step(&ClusterControl_B.Input, &ClusterControl_B.Displacement);
+
+    // DataTypeConversion: '<S3>/Data Type Conversion'
+    u = ClusterControl_B.Displacement;
+    v = std::abs(u);
+    if (v < 4.503599627370496E+15) {
+      if (v >= 0.5) {
+        u = std::floor(u + 0.5);
+      } else {
+        u *= 0.0;
+      }
+    }
+
+    if (rtIsNaN(u) || rtIsInf(u)) {
+      u = 0.0;
+    } else {
+      u = std::fmod(u, 4.294967296E+9);
+    }
 
     // Outport: '<Root>/RPM_Out' incorporates:
-    //   Constant: '<S3>/Constant'
-    //   Product: '<S3>/Product'
+    //   DataTypeConversion: '<S3>/Data Type Conversion'
 
-    ClusterControl_Y.RPM_Out = ClusterControl_B.RPM_In *
-      ClusterControl_P.Constant_Value;
+    ClusterControl_Y.RPM_Out = u < 0.0 ? -static_cast<int32_T>
+      (static_cast<uint32_T>(-u)) : static_cast<int32_T>(static_cast<uint32_T>(u));
 
-    // End of Outputs for SubSystem: '<Root>/Model_Step1'
+    // End of Outputs for SubSystem: '<Root>/Model_Step100'
   }
 
   // Model initialize function
   void ClusterControl::Initialize()
   {
-    // SystemInitialize for S-Function (sfun_private_function_caller) generated from: '<Root>/Model_Step1' incorporates:
-    //   SubSystem: '<Root>/Model_Step1'
+    // Registration code
 
-    // SystemInitialize for Outport: '<Root>/RPM_Out' incorporates:
-    //   Outport: '<S3>/RPM_Out'
+    // initialize non-finites
+    rt_InitInfAndNaN(sizeof(real_T));
 
-    ClusterControl_Y.RPM_Out = ClusterControl_P.RPM_Out_Y0;
+    // Model Initialize function for ModelReference Block: '<S3>/Model'
 
-    // End of SystemInitialize for S-Function (sfun_private_function_caller) generated from: '<Root>/Model_Step1' 
+    // Set error status pointer for ModelReference Block: '<S3>/Model'
+    ModelMDLOBJ1.setErrorStatusPointer(rtmGetErrorStatusPointer
+      ((&ClusterControl_M)));
+
+    // SystemInitialize for Atomic SubSystem: '<Root>/Model_Step100'
+
+    // SystemInitialize for ModelReference: '<S3>/Model'
+    ModelMDLOBJ1.init();
+
+    // End of SystemInitialize for SubSystem: '<Root>/Model_Step100'
   }
 
   // Model terminate function
