@@ -1,0 +1,1 @@
+var modelInfo = {model:"Single_Degree_of_Freedom"};var modelHierarchy=[{model:"Single_Degree_of_Freedom",relativePath:"_internal.html",parent:"null"},];

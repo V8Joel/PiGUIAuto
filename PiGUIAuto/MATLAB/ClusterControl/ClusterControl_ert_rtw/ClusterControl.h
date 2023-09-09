@@ -6,9 +6,9 @@
 //
 // Code generated for Simulink model 'ClusterControl'.
 //
-// Model version                  : 1.9
+// Model version                  : 1.17
 // Simulink Coder version         : 23.2 (R2023b) 19-May-2023
-// C/C++ source code generated on : Sat Sep  2 15:52:27 2023
+// C/C++ source code generated on : Sat Sep  9 16:59:04 2023
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: ARM Compatible->ARM Cortex-A (64-bit)
@@ -19,7 +19,14 @@
 #define RTW_HEADER_ClusterControl_h_
 #include "rtwtypes.h"
 #include "ClusterControl_types.h"
-#include <stddef.h>
+#include "Single_Degree_of_Freedom.h"
+
+extern "C"
+{
+
+#include "rt_nonfinite.h"
+
+}
 
 // Macros for accessing real-time model data structure
 #ifndef rtmGetErrorStatus
@@ -28,6 +35,10 @@
 
 #ifndef rtmSetErrorStatus
 #define rtmSetErrorStatus(rtm, val)    ((rtm)->errorStatus = (val))
+#endif
+
+#ifndef rtmGetErrorStatusPointer
+#define rtmGetErrorStatusPointer(rtm)  ((const char_T **)(&((rtm)->errorStatus)))
 #endif
 
 // Code_Instrumentation_Declarations_Placeholder
@@ -41,7 +52,8 @@ namespace BenchTest
    public:
     // Block signals (default storage)
     struct B_ClusterControl_T {
-      int32_T RPM_In;
+      real_T Input;                    // '<S3>/Data Type Conversion1'
+      real_T Displacement;             // '<S3>/Model'
     };
 
     // External inputs (root inport signals with default storage)
@@ -54,19 +66,9 @@ namespace BenchTest
       int32_T RPM_Out;                 // '<Root>/RPM_Out'
     };
 
-    // Parameters (default storage)
-    struct P_ClusterControl_T {
-      int32_T RPM_Out_Y0;              // Computed Parameter: RPM_Out_Y0
-                                          //  Referenced by: '<S3>/RPM_Out'
-
-      int32_T Constant_Value;          // Expression: RPM_Gain
-                                          //  Referenced by: '<S3>/Constant'
-
-    };
-
     // Real-time Model Data Structure
     struct RT_MODEL_ClusterControl_T {
-      const char_T * volatile errorStatus;
+      const char_T *errorStatus;
     };
 
     // Real-Time Model get method
@@ -78,9 +80,6 @@ namespace BenchTest
     // External outputs
     ExtY_ClusterControl_T ClusterControl_Y;
 
-    // Tunable parameters
-    static P_ClusterControl_T ClusterControl_P;
-
     // Root inport: '<Root>/RPM_In' set method
     void setRPM_In(int32_T localArgInput);
 
@@ -89,9 +88,6 @@ namespace BenchTest
 
     // model initialize function
     void Initialize();
-
-    // model step function
-    void Model_Step_10Hz();
 
     // model step function
     void Model_Step_100Hz();
@@ -109,6 +105,12 @@ namespace BenchTest
    private:
     // Block signals
     B_ClusterControl_T ClusterControl_B;
+
+    // private member function(s) for subsystem '<Root>/Model_Step10'
+    void Model_Step_10Hz();
+
+    // model instance variable for '<S3>/Model'
+    Single_Degree_of_Freedom ModelMDLOBJ1;
 
     // Real-Time Model
     RT_MODEL_ClusterControl_T ClusterControl_M;
@@ -131,8 +133,8 @@ namespace BenchTest
 //
 //  '<Root>' : 'ClusterControl'
 //  '<S1>'   : 'ClusterControl/Initialize Function'
-//  '<S2>'   : 'ClusterControl/Model_Step'
-//  '<S3>'   : 'ClusterControl/Model_Step1'
+//  '<S2>'   : 'ClusterControl/Model_Step10'
+//  '<S3>'   : 'ClusterControl/Model_Step100'
 //  '<S4>'   : 'ClusterControl/Terminate Function'
 
 #endif                                 // RTW_HEADER_ClusterControl_h_

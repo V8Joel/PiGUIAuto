@@ -20,7 +20,7 @@ public:
     int rpmOut() const;
 
 public slots:
-    void stepModel10Hz();
+//    void stepModel10Hz();
     void stepModel100Hz();
     void shutdown();
     void rpmIn(int32_T sliderRPM);
@@ -33,7 +33,7 @@ signals: // Declare the signal here
 private:
     BenchTest::ClusterControl model;
 //    QThread* simulinkThread;
-    QTimer* timer10Hz;
+//    QTimer* timer10Hz;
     QTimer* timer100Hz;
     int m_rpmOut;
 };

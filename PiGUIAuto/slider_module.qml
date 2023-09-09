@@ -50,10 +50,6 @@ Rectangle {
         touchDragThreshold: 0.1
         stepSize: 0.1
         value: 5
-
-        onValueChanged: {
-            slider_out = Number(value.toFixed(2));
-        }
     }
 
     Text {
@@ -64,10 +60,10 @@ Rectangle {
         height: 25
         id: slider_value
         color: "#ffbb00"
-        text: value_slider.value.toFixed(2) // This converts the number to a string with two decimal places
-        font.pixelSize: 25
+        text: "5"
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
+        font.pointSize: 25
         font.weight: Font.Bold
         font.family: "Arial"
     }

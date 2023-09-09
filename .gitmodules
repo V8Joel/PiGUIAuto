@@ -1,0 +1,3 @@
+[submodule "PiGUIAuto/Simulink_Library"]
+	path = PiGUIAuto/Simulink_Library
+	url = https://V8Joel@github.com/V8Joel/Simulink_Library.git

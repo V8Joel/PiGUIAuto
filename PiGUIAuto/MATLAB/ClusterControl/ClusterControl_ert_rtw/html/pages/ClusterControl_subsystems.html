@@ -84,21 +84,6 @@ Function
 </tr>
 <tr class="odd">
 <td align="left" valign="top">
-&lt;S3&gt;
-</td>
-<td align="left" valign="top">
-Function
-</td>
-<td align="left" valign="top">
-<a href="javascript: void(0)" onclick="postParentWindowMessage({message:'jumpToCode',location:'Model_Step_100Hz'})" class="reportToCode" fcnName="Model_Step_100Hz">Function(S3)</a>
-</td>
-<td align="left" valign="top">
-<font color="green">normal</font>
-</td>
-
-</tr>
-<tr class="even">
-<td align="left" valign="top">
 &lt;S1&gt;
 </td>
 <td align="left" valign="top">
@@ -109,6 +94,21 @@ Inline
 </td>
 <td align="left" valign="top">
 <font color="green">normal</font>
+</td>
+
+</tr>
+<tr class="even">
+<td align="left" valign="top">
+&lt;S3&gt;
+</td>
+<td align="left" valign="top">
+Auto
+</td>
+<td align="left" valign="top">
+Inline
+</td>
+<td align="left" valign="top">
+<a href="#S3blker"><font color="red">[exceptions]</font></a>
 </td>
 
 </tr>
@@ -162,7 +162,14 @@ This section provides details on each exception that caused a nonvirtual subsyst
 </tr>
 <tr>
 <td align="left" valign="top">
-<br /><b>No reuse exception in model.</b>
+<span id="S3blker">Contents of &lt;S3&gt; not reusable because: </span><br />
+
+<ul>
+
+<li>The Subsystem is forced to be Non-reused because it contains a model block that has C++ class configuration and its 'Function packaging' setting is 'Auto'. [ClusterControl/Model_Step100]</li>
+</ul>
+
+
 </td>
 
 </tr>

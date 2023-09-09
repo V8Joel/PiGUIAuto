@@ -1,1 +1,1 @@
-var modelInfo = {model:"ClusterControl"};var modelHierarchy=[{model:"ClusterControl",relativePath:"_internal.html",parent:"null"},];
+var modelInfo = {model:"ClusterControl"};var modelHierarchy=[{model:"ClusterControl",relativePath:"_internal.html",parent:"null"},{model:"Single_Degree_of_Freedom",relativePath:"../../slprj/ert/Single_Degree_of_Freedom/html/_internal.html",parent:"ClusterControl"},];

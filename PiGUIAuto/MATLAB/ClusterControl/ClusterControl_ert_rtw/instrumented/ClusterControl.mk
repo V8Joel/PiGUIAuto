@@ -2,7 +2,7 @@
 ## Makefile generated for component 'ClusterControl'. 
 ## 
 ## Makefile     : ClusterControl.mk
-## Generated on : Sat Sep 02 15:52:34 2023
+## Generated on : Sat Sep 09 16:59:08 2023
 ## Final product: $(RELATIVE_PATH_TO_ANCHOR)/ClusterControl
 ## Product type : executable
 ## 
@@ -154,7 +154,7 @@ BUILD_TYPE = "Top-Level Standalone Executable"
 ## INCLUDE PATHS
 ###########################################################################
 
-INCLUDES_BUILDINFO = -I$(START_DIR) -I$(START_DIR)/ClusterControl_ert_rtw/instrumented -I$(MATLAB_ROOT)/extern/include -I$(MATLAB_ROOT)/simulink/include -I$(MATLAB_ROOT)/rtw/c/src -I$(MATLAB_ROOT)/rtw/c/src/ext_mode/common -I$(MATLAB_ROOT)/rtw/c/ert -I$(START_DIR)/slprj/ert/_sharedutils
+INCLUDES_BUILDINFO = -I$(START_DIR)/slprj/ert/Single_Degree_of_Freedom -I$(START_DIR) -I$(START_DIR)/ClusterControl_ert_rtw/instrumented -I$(MATLAB_ROOT)/extern/include -I$(MATLAB_ROOT)/simulink/include -I$(MATLAB_ROOT)/rtw/c/src -I$(MATLAB_ROOT)/rtw/c/src/ext_mode/common -I$(MATLAB_ROOT)/rtw/c/ert -I$(START_DIR)/slprj/ert/_sharedutils
 
 INCLUDES = $(INCLUDES_BUILDINFO)
 
@@ -162,7 +162,7 @@ INCLUDES = $(INCLUDES_BUILDINFO)
 ## DEFINES
 ###########################################################################
 
-DEFINES_BUILD_ARGS = -DCLASSIC_INTERFACE=0 -DALLOCATIONFCN=0 -DTERMFCN=1 -DONESTEPFCN=1 -DMAT_FILE=0 -DMULTI_INSTANCE_CODE=1 -DINTEGER_CODE=0 -DMT=1
+DEFINES_BUILD_ARGS = -DCLASSIC_INTERFACE=0 -DALLOCATIONFCN=0 -DTERMFCN=1 -DONESTEPFCN=1 -DMAT_FILE=0 -DMULTI_INSTANCE_CODE=1 -DINTEGER_CODE=0 -DMT=0
 DEFINES_CUSTOM = 
 DEFINES_OPTS = -DTID01EQ=0
 DEFINES_STANDARD = -DMODEL=ClusterControl -DNUMST=1 -DNCSTATES=0 -DHAVESTDIO -DMODEL_HAS_DYNAMICALLY_LOADED_SFCNS=0
@@ -173,7 +173,7 @@ DEFINES = $(DEFINES_BUILD_ARGS) $(DEFINES_CUSTOM) $(DEFINES_OPTS) $(DEFINES_STAN
 ## SOURCE FILES
 ###########################################################################
 
-SRCS = $(START_DIR)/ClusterControl_ert_rtw/instrumented/ClusterControl.cpp $(START_DIR)/ClusterControl_ert_rtw/instrumented/ClusterControl_data.cpp
+SRCS = $(START_DIR)/ClusterControl_ert_rtw/instrumented/ClusterControl.cpp coder_profile_timer.cpp
 
 MAIN_SRC = $(START_DIR)/ClusterControl_ert_rtw/instrumented/ert_main.cpp
 
@@ -183,7 +183,7 @@ ALL_SRCS = $(SRCS) $(MAIN_SRC)
 ## OBJECTS
 ###########################################################################
 
-OBJS = ClusterControl.o ClusterControl_data.o
+OBJS = ClusterControl.o coder_profile_timer.o
 
 MAIN_OBJ = ert_main.o
 
@@ -199,7 +199,9 @@ PREBUILT_OBJS =
 ## LIBRARIES
 ###########################################################################
 
-LIBS = 
+MODELREF_LIBS = ../../slprj/ert/Single_Degree_of_Freedom/instrumented/Single_Degree_of_Freedom_rtwlib.a
+
+LIBS = $(START_DIR)/slprj/ert/_sharedutils/rtwshared.a
 
 ###########################################################################
 ## SYSTEM LIBRARIES
@@ -245,7 +247,7 @@ all : build
 build : prebuild $(PRODUCT)
 
 
-buildobj : prebuild $(OBJS) $(PREBUILT_OBJS)
+buildobj : prebuild $(OBJS) $(PREBUILT_OBJS) $(LIBS)
 	@echo "### Successfully generated all binary outputs."
 
 
@@ -269,9 +271,9 @@ execute : download
 # Create a standalone executable            
 #-------------------------------------------
 
-$(PRODUCT) : $(OBJS) $(PREBUILT_OBJS) $(MAIN_OBJ)
+$(PRODUCT) : $(OBJS) $(PREBUILT_OBJS) $(MODELREF_LIBS) $(LIBS) $(MAIN_OBJ)
 	@echo "### Creating standalone executable "$(PRODUCT)" ..."
-	$(CPP_LD) $(CPP_LDFLAGS) -o $(PRODUCT) $(OBJS) $(MAIN_OBJ) $(SYSTEM_LIBS) $(TOOLCHAIN_LIBS)
+	$(CPP_LD) $(CPP_LDFLAGS) -o $(PRODUCT) $(OBJS) $(MAIN_OBJ) ../../slprj/ert/Single_Degree_of_Freedom/instrumented/Single_Degree_of_Freedom_rtwlib.a $(LIBS) $(SYSTEM_LIBS) $(TOOLCHAIN_LIBS)
 	@echo "### Created: $(PRODUCT)"
 
 
@@ -523,11 +525,47 @@ $(PRODUCT) : $(OBJS) $(PREBUILT_OBJS) $(MAIN_OBJ)
 	$(CPP) $(CPPFLAGS) -o "$@" "$<"
 
 
-ClusterControl.o : $(START_DIR)/ClusterControl_ert_rtw/instrumented/ClusterControl.cpp
+%.o : $(START_DIR)/ClusterControl_ert_rtw/instrumented/%.c
+	$(CC) $(CFLAGS) -o "$@" "$<"
+
+
+%.o : $(START_DIR)/ClusterControl_ert_rtw/instrumented/%.cpp
 	$(CPP) $(CPPFLAGS) -o "$@" "$<"
 
 
-ClusterControl_data.o : $(START_DIR)/ClusterControl_ert_rtw/instrumented/ClusterControl_data.cpp
+%.o : $(START_DIR)/ClusterControl_ert_rtw/instrumented/%.cc
+	$(CPP) $(CPPFLAGS) -o "$@" "$<"
+
+
+%.o : $(START_DIR)/ClusterControl_ert_rtw/instrumented/%.CC
+	$(CPP) $(CPPFLAGS) -o "$@" "$<"
+
+
+%.o : $(START_DIR)/ClusterControl_ert_rtw/instrumented/%.cp
+	$(CPP) $(CPPFLAGS) -o "$@" "$<"
+
+
+%.o : $(START_DIR)/ClusterControl_ert_rtw/instrumented/%.CPP
+	$(CPP) $(CPPFLAGS) -o "$@" "$<"
+
+
+%.o : $(START_DIR)/ClusterControl_ert_rtw/instrumented/%.c++
+	$(CPP) $(CPPFLAGS) -o "$@" "$<"
+
+
+%.o : $(START_DIR)/ClusterControl_ert_rtw/instrumented/%.C++
+	$(CPP) $(CPPFLAGS) -o "$@" "$<"
+
+
+%.o : $(START_DIR)/ClusterControl_ert_rtw/instrumented/%.cxx
+	$(CPP) $(CPPFLAGS) -o "$@" "$<"
+
+
+%.o : $(START_DIR)/ClusterControl_ert_rtw/instrumented/%.CXX
+	$(CPP) $(CPPFLAGS) -o "$@" "$<"
+
+
+ClusterControl.o : $(START_DIR)/ClusterControl_ert_rtw/instrumented/ClusterControl.cpp
 	$(CPP) $(CPPFLAGS) -o "$@" "$<"
 
 
