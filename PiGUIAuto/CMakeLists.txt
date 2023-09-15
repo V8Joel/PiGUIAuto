@@ -5,6 +5,7 @@ project(PiGUIAuto VERSION 0.1 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt6 6.5 REQUIRED COMPONENTS Quick)
+find_package(Qt6 REQUIRED COMPONENTS Core)
 
 qt_standard_project_setup(REQUIRES 6.5)
 
@@ -16,32 +17,62 @@ qt_add_qml_module(appPiGUIAuto
     URI PiGUIAuto
     VERSION 1.0
     QML_FILES Main.qml
-    RESOURCES assets/images/istockphoto-996396804-170667a.jpg
-    RESOURCES assets/icons/icon_settings-100.png
-    RESOURCES assets/images/BMW-1-Series-Design-Sketch-removebg-preview.png
-    RESOURCES assets/icons/icon_settings_white_48.png
-    RESOURCES assets/icons/icons-door-lock-48.png
-    RESOURCES assets/gif/icon-settings_gif.gif
-    RESOURCES assets/icons/icon-hazard-warning-flasher-50.png
-    RESOURCES assets/icons/icon-flame.png
-    RESOURCES assets/icons/icon-cold-blue-48.png
-    RESOURCES assets/images/Image_BMW_Silver.png
+    RESOURCES assets/Icons/icon-cold.png assets/Icons/icon-door-lock.png assets/Icons/icon-hazard.png assets/Icons/icon-heater.png assets/Icons/icon-locked.png assets/Icons/icon-settings.png assets/Images/Image_BMW_Silver.png
+    RESOURCES assets/Icons/icon-home.png
+    SOURCES Controllers/system.h Controllers/system.cpp
+    RESOURCES assets/Icons/icon-unlocked.png
+    QML_FILES SettingsPage.qml
+    QML_FILES BottomBar.qml
+    QML_FILES TopBar.qml
+    RESOURCES assets/Icons/icon-battery.png assets/Icons/icon-battery-charging.png assets/Icons/icon-bluetooth-connected.png assets/Icons/icon-bluetooth-unconnected.png assets/Icons/icon-low-battery.png assets/Icons/icon-low-signal.png assets/Icons/icon-signal-mid.png assets/Icons/icon-signal-strong.png assets/Icons/icon-user.png assets/Icons/icon-wifi-connected.png assets/Icons/icon-wifi-disconnected.png
+    RESOURCES assets/images/wifi.png
+    RESOURCES assets/images/bluetooth.png
+    RESOURCES assets/images/apple-carplay.png
+    SOURCES Controllers/APKBinder.cpp Controllers/APKBinder.h
+    RESOURCES android/gradle/wrapper/gradle-wrapper.jar android/gradle/wrapper/gradle-wrapper.properties android/res/values/libs.xml android/AndroidManifest.xml android/build.gradle android/gradle.properties android/gradlew android/gradlew.bat
+    RESOURCES android/src/QtAndroidService.java
+
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
-# If you are developing for iOS or macOS you should consider setting an
-# explicit, fixed bundle identifier manually though.
+# If you are developing for iOS or macOS you should consider setting an# explicit, fixed bundle identifier manually though.
+
 set_target_properties(appPiGUIAuto PROPERTIES
-#    MACOSX_BUNDLE_GUI_IDENTIFIER com.example.appPiGUIAuto
+    # MACOSX_BUNDLE_GUI_IDENTIFIER com.example.appPiGUIAuto
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
     MACOSX_BUNDLE TRUE
     WIN32_EXECUTABLE TRUE
+    QT_ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/android
+)
+
+target_link_libraries(appPiGUIAuto PRIVATE
+    Qt6::Core
+    Qt6::Gui
+    Qt6::Qml
+    # ...
 )
 
 target_link_libraries(appPiGUIAuto
     PRIVATE Qt6::Quick
 )
+target_link_libraries(appPiGUIAuto
+    PRIVATE Qt6::Core
+)
+
+target_link_libraries(appPiGUIAuto
+    PRIVATE Qt6::CorePrivate
+)
+
+set(ANDROID_PACKAGE_SOURCE_DIR ${PROJECT_SOURCE_DIR}/android CACHE INTERNAL "")
+
+file(GLOB_RECURSE SOURCES
+      ${PROJECT_SOURCE_DIR}/*.cpp
+      ${PROJECT_SOURCE_DIR}/*.qml
+      ${PROJECT_SOURCE_DIR}/*.h
+      ${PROJECT_SOURCE_DIR}/*.qrc
+      ${PROJECT_SOURCE_DIR}/android/AndroidManifest.xml
+    )
 
 include(GNUInstallDirs)
 install(TARGETS appPiGUIAuto
