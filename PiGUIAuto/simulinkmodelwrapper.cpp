@@ -1,7 +1,7 @@
-#include "SimulinkModelWrapper.h"
+#include "simulinkmodelwrapper.h"
 #include <QDebug>
 
-SimulinkModelWrapper::SimulinkModelWrapper(QObject* parent)
+simulinkmodelwrapper::simulinkmodelwrapper(QObject* parent)
     : QObject(parent)
     , timer10Hz(new QTimer) // 10Hz Timer Constructor
     , timer100Hz(new QTimer) // 100Hz Timer Constructor
@@ -19,15 +19,15 @@ SimulinkModelWrapper::SimulinkModelWrapper(QObject* parent)
     timer100Hz->setInterval(10); // 100Hz
     timer100Hz->setTimerType(Qt::PreciseTimer);
 
-    connect(timer10Hz, &QTimer::timeout, this, &SimulinkModelWrapper::stepModel10Hz);
-    connect(timer100Hz, &QTimer::timeout, this, &SimulinkModelWrapper::stepModel100Hz);
+//    connect(timer10Hz, &QTimer::timeout, this, &simulinkmodelwrapper::stepModel10Hz);
+    connect(timer100Hz, &QTimer::timeout, this, &simulinkmodelwrapper::stepModel100Hz);
 
     timer10Hz->start();
     timer100Hz->start();
 }
 
 
-SimulinkModelWrapper::~SimulinkModelWrapper()
+simulinkmodelwrapper::~simulinkmodelwrapper()
 {
     emit stopTimerSignal(); // Emit the signal to stop the timer
     timer10Hz->stop(); // Explicitly stop the 10Hz timer
@@ -35,13 +35,13 @@ SimulinkModelWrapper::~SimulinkModelWrapper()
 }
 
 
-void SimulinkModelWrapper::stepModel10Hz()
-{
-    model.Model_Step_10Hz(); // Executes the Simulink 10Hz main code, based on the QTimer
-    qDebug() << "Simulink Model Stepped (10Hz)";
-}
+//void simulinkmodelwrapper::stepModel10Hz()
+//{
+////    model.Model_Step_10Hz(); // Executes the Simulink 10Hz main code, based on the QTimer
+//    qDebug() << "Simulink Model Stepped (10Hz)";
+//}
 
-void SimulinkModelWrapper::stepModel100Hz()
+void simulinkmodelwrapper::stepModel100Hz()
 {
     model.Model_Step_100Hz(); // Executes the Simulink 10Hz main code, based on the QTimer
     setRpmOut(model.getRPM_Out());
@@ -49,7 +49,7 @@ void SimulinkModelWrapper::stepModel100Hz()
 }
 
 
-void SimulinkModelWrapper::shutdown()
+void simulinkmodelwrapper::shutdown()
 {
     if(timer10Hz) {
         timer10Hz->stop(); // Disables the QTimer to allow for a graceful shutdown
@@ -62,19 +62,19 @@ void SimulinkModelWrapper::shutdown()
 
 }
 
-void SimulinkModelWrapper::rpmIn(int32_T sliderRPM)
+void simulinkmodelwrapper::rpmIn(int32_T sliderRPM)
 {
     model.setRPM_In(sliderRPM);
     qDebug() << "SliderRPM value assigned to: " << sliderRPM;
 }
 
-int SimulinkModelWrapper::rpmOut() const
+int simulinkmodelwrapper::rpmOut() const
 {
     return m_rpmOut;
     qDebug() << "rpmOut Obtained: " << m_rpmOut;
 }
 
-void SimulinkModelWrapper::setRpmOut(int newRpmOut)
+void simulinkmodelwrapper::setRpmOut(int newRpmOut)
 {
     if (m_rpmOut != newRpmOut) {
         m_rpmOut = newRpmOut;

@@ -6,7 +6,7 @@
 #include <QThread>
 #include "ClusterControl.h" // Include the Simulink-generated header
 
-class SimulinkModelWrapper : public QObject
+class simulinkmodelwrapper : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(int rpmOut READ rpmOut NOTIFY rpmOutChanged)
@@ -14,13 +14,13 @@ class SimulinkModelWrapper : public QObject
 
 
 public:
-    SimulinkModelWrapper(QObject* parent = nullptr);
-    ~SimulinkModelWrapper();
+    simulinkmodelwrapper(QObject* parent = nullptr);
+    ~simulinkmodelwrapper();
 
     int rpmOut() const;
 
 public slots:
-    void stepModel10Hz();
+//    void stepModel10Hz();
     void stepModel100Hz();
     void shutdown();
     void rpmIn(int32_T sliderRPM);

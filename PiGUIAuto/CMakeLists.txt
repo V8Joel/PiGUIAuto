@@ -19,7 +19,7 @@ qt_add_qml_module(appPiGUIAuto
     SOURCES RPM.h RPM.cpp
     RESOURCES assets/images/istockphoto-996396804-170667a.jpg assets/images/mpg_needle_daytime_2_unmod.PNG assets/images/mpg_needle_daytime_mod.PNG assets/images/mpg_needle_daytime_unmod.PNG assets/images/mpg_needle_nighttime_mod.PNG assets/images/mpg_needle_nighttime_unmod.PNG assets/images/rpm_face_daytime.PNG assets/images/rpm_face_nighttime.PNG assets/images/rpm_needle_daytime_2_unmod.PNG assets/images/rpm_needle_daytime_mod.PNG assets/images/rpm_needle_daytime_unmod.PNG assets/images/rpm_needle_nighttime_mod.PNG assets/images/rpm_needle_nighttime_unmod.PNG
     QML_FILES Slider_module.qml
-    SOURCES SimulinkModelWrapper.h SimulinkModelWrapper.cpp
+    SOURCES simulinkmodelwrapper.h simulinkmodelwrapper.cpp
     SOURCES  MATLAB/ClusterControl/ClusterControl_ert_rtw/ClusterControl_types.h MATLAB/ClusterControl/ClusterControl_ert_rtw/ClusterControl_private.h MATLAB/ClusterControl/ClusterControl_ert_rtw/ClusterControl_data.cpp MATLAB/ClusterControl/ClusterControl_ert_rtw/ClusterControl.h MATLAB/ClusterControl/ClusterControl_ert_rtw/ClusterControl.cpp
     RESOURCES MATLAB/ClusterControl/slprj/ert/_sharedutils/rtwtypes.h
 )

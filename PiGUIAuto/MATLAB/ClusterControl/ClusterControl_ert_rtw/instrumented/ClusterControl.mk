@@ -2,7 +2,7 @@
 ## Makefile generated for component 'ClusterControl'. 
 ## 
 ## Makefile     : ClusterControl.mk
-## Generated on : Sat Sep 02 15:52:34 2023
+## Generated on : Fri Sep 15 22:06:17 2023
 ## Final product: $(RELATIVE_PATH_TO_ANCHOR)/ClusterControl
 ## Product type : executable
 ## 
@@ -162,7 +162,7 @@ INCLUDES = $(INCLUDES_BUILDINFO)
 ## DEFINES
 ###########################################################################
 
-DEFINES_BUILD_ARGS = -DCLASSIC_INTERFACE=0 -DALLOCATIONFCN=0 -DTERMFCN=1 -DONESTEPFCN=1 -DMAT_FILE=0 -DMULTI_INSTANCE_CODE=1 -DINTEGER_CODE=0 -DMT=1
+DEFINES_BUILD_ARGS = -DCLASSIC_INTERFACE=0 -DALLOCATIONFCN=0 -DTERMFCN=1 -DONESTEPFCN=1 -DMAT_FILE=0 -DMULTI_INSTANCE_CODE=1 -DINTEGER_CODE=0 -DMT=0
 DEFINES_CUSTOM = 
 DEFINES_OPTS = -DTID01EQ=0
 DEFINES_STANDARD = -DMODEL=ClusterControl -DNUMST=1 -DNCSTATES=0 -DHAVESTDIO -DMODEL_HAS_DYNAMICALLY_LOADED_SFCNS=0

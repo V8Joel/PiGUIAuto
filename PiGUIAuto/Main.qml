@@ -21,7 +21,6 @@ Window {
         rpm_target: modelWrapper.rpmOut
         onRpm_targetChanged: {
             console.log(new Date().toISOString(), "RPM Dial changed in QML to: ", rpm_target);
-            modelWrapper.rpmIn(slider_value);
         }
     }
 
@@ -53,10 +52,10 @@ Window {
         Slider_module {
             id: rpm_slider
             slider_text: "RPM Target"
-            slider_min: 45
-            slider_max: 325
-            slider_step: 1
-            slider_initial: 45
+            slider_min: 0
+            slider_max: 8000
+            slider_step: 10
+            slider_initial: 0
             onSlider_valueChanged: {
                 console.log(new Date().toISOString(), "Slider value changed:", slider_value);
                 modelWrapper.rpmIn(slider_value);
