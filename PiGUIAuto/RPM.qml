@@ -5,14 +5,11 @@ Item {
     height: 1000
     antialiasing: true
 
-    property int angle_target: 45
-    property int rpm_target: 0
-    readonly property int max_rpm: 8000
-    readonly property int start_angle: 45
-
+    property int rpm_target: 45
+    property int rotation_target: 0
 
     onRpm_targetChanged: {
-        angle_target = (rpm_target * (270 / max_rpm) + start_angle);
+        rotation_target = ((rpm_target * (270/8000)) + 45)
     }
 
     Image {
@@ -32,7 +29,7 @@ Item {
             height: 1000
             source: "assets/images/rpm_needle_daytime_2_unmod.PNG"
             fillMode: Image.PreserveAspectFit
-            rotation: angle_target
+            rotation: rotation_target
         }
     }
 }

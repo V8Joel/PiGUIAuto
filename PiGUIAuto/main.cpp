@@ -2,7 +2,7 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QQuickItem>
-#include "SimulinkModelWrapper.h"
+#include "simulinkmodelwrapper.h"
 
 int main(int argc, char *argv[])
 {
@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
 
-    SimulinkModelWrapper modelWrapper;
+    simulinkmodelwrapper modelWrapper;
 
     engine.rootContext()->setContextProperty("modelWrapper", &modelWrapper);
 
