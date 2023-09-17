@@ -26,6 +26,12 @@ int main(int argc, char *argv[])
     if (!rootObjects.isEmpty()) {
         QObject* rootObject = rootObjects.first();
         QQuickItem* mainItem = qobject_cast<QQuickItem*>(rootObject);
+
+        // Connect the signal to a QML function
+        QObject::connect(&modelWrapper, &simulinkmodelwrapper::rpmOutChanged, rootObject, [rootObject](int value) {
+            QMetaObject::invokeMethod(rootObject, "onRpmOutChanged", Q_ARG(QVariant, value));
+        });
+
     }
 
     // Handle application's exit signal with a context
@@ -33,10 +39,6 @@ int main(int argc, char *argv[])
         modelWrapper.shutdown();
 
     });
-
-    QObject::connect(&engine, &QQmlApplicationEngine::objectCreationFailed,
-        &app, []() { QCoreApplication::exit(-1); },
-        Qt::QueuedConnection);
 
     return app.exec();
 }

@@ -19,9 +19,14 @@ Window {
         anchors.top: parent.top
         anchors.topMargin: (parent.height - height) / 2
         rpm_target: modelWrapper.rpmOut
-        onRpm_targetChanged: {
+        function onRpmOutChanged(newRpmValue) {
+            rpm_target = newRpmValue
             console.log(new Date().toISOString(), "RPM Dial changed in QML to: ", rpm_target);
         }
+
+//        onRpm_targetChanged: {
+//            console.log(new Date().toISOString(), "RPM Dial changed in QML to: ", rpm_target);
+//        }
     }
 
     Column {

@@ -28,7 +28,7 @@ public slots:
 
 signals: // Declare the signal here
     void stopTimerSignal();
-    void rpmOutChanged();
+    void rpmOutChanged(int newRpmValue);
 
 private:
     BenchTest::ClusterControl model;
