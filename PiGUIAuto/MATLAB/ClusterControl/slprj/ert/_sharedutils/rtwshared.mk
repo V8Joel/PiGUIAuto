@@ -2,7 +2,7 @@
 ## Makefile generated for component 'rtwshared'. 
 ## 
 ## Makefile     : rtwshared.mk
-## Generated on : Tue Sep 05 21:50:44 2023
+## Generated on : Sun Sep 17 20:26:19 2023
 ## Final product: ./rtwshared.a
 ## Product type : static library
 ## 
@@ -173,7 +173,7 @@ DEFINES = $(DEFINES_BUILD_ARGS) $(DEFINES_CUSTOM)
 ## SOURCE FILES
 ###########################################################################
 
-SRCS = $(START_DIR)/slprj/ert/_sharedutils/rtGetInf.cpp $(START_DIR)/slprj/ert/_sharedutils/rtGetNaN.cpp $(START_DIR)/slprj/ert/_sharedutils/rt_nonfinite.cpp
+SRCS = $(START_DIR)/slprj/ert/_sharedutils/rtGetInf.cpp $(START_DIR)/slprj/ert/_sharedutils/rtGetNaN.cpp $(START_DIR)/slprj/ert/_sharedutils/rt_nonfinite.cpp $(START_DIR)/slprj/ert/_sharedutils/rt_roundd_snf.cpp
 
 ALL_SRCS = $(SRCS)
 
@@ -181,7 +181,7 @@ ALL_SRCS = $(SRCS)
 ## OBJECTS
 ###########################################################################
 
-OBJS = rtGetInf.o rtGetNaN.o rt_nonfinite.o
+OBJS = rtGetInf.o rtGetNaN.o rt_nonfinite.o rt_roundd_snf.o
 
 ALL_OBJS = $(OBJS)
 
@@ -401,6 +401,10 @@ rtGetNaN.o : $(START_DIR)/slprj/ert/_sharedutils/rtGetNaN.cpp
 
 
 rt_nonfinite.o : $(START_DIR)/slprj/ert/_sharedutils/rt_nonfinite.cpp
+	$(CPP) $(CPPFLAGS) -o "$@" "$<"
+
+
+rt_roundd_snf.o : $(START_DIR)/slprj/ert/_sharedutils/rt_roundd_snf.cpp
 	$(CPP) $(CPPFLAGS) -o "$@" "$<"
 
 

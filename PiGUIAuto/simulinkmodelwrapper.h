@@ -17,25 +17,25 @@ public:
     simulinkmodelwrapper(QObject* parent = nullptr);
     ~simulinkmodelwrapper();
 
-    int rpmOut() const;
+    int32_T rpmOut() const;
 
 public slots:
 //    void stepModel10Hz();
     void stepModel100Hz();
     void shutdown();
     void rpmIn(int32_T sliderRPM);
-    void setRpmOut(int newRpmOut);
+    void setRpmOut(int32_T newRpmOut);
 
 signals: // Declare the signal here
     void stopTimerSignal();
-    void rpmOutChanged(int newRpmValue);
+    void rpmOutChanged(int32_T newRpmValue);
 
 private:
     BenchTest::ClusterControl model;
 //    QThread* simulinkThread;
 //    QTimer* timer10Hz;
     QTimer* timer100Hz;
-    int m_rpmOut;
+    int32_T m_rpmOut;
 };
 
 #endif // SIMULINKMODELWRAPPER_H

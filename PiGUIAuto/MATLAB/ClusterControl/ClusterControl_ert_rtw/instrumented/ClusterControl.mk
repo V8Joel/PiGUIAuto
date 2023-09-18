@@ -2,7 +2,7 @@
 ## Makefile generated for component 'ClusterControl'. 
 ## 
 ## Makefile     : ClusterControl.mk
-## Generated on : Fri Sep 15 22:06:17 2023
+## Generated on : Sun Sep 17 21:48:30 2023
 ## Final product: $(RELATIVE_PATH_TO_ANCHOR)/ClusterControl
 ## Product type : executable
 ## 
@@ -199,7 +199,7 @@ PREBUILT_OBJS =
 ## LIBRARIES
 ###########################################################################
 
-LIBS = 
+LIBS = $(START_DIR)/slprj/ert/_sharedutils/rtwshared.a
 
 ###########################################################################
 ## SYSTEM LIBRARIES
@@ -245,7 +245,7 @@ all : build
 build : prebuild $(PRODUCT)
 
 
-buildobj : prebuild $(OBJS) $(PREBUILT_OBJS)
+buildobj : prebuild $(OBJS) $(PREBUILT_OBJS) $(LIBS)
 	@echo "### Successfully generated all binary outputs."
 
 
@@ -269,9 +269,9 @@ execute : download
 # Create a standalone executable            
 #-------------------------------------------
 
-$(PRODUCT) : $(OBJS) $(PREBUILT_OBJS) $(MAIN_OBJ)
+$(PRODUCT) : $(OBJS) $(PREBUILT_OBJS) $(LIBS) $(MAIN_OBJ)
 	@echo "### Creating standalone executable "$(PRODUCT)" ..."
-	$(CPP_LD) $(CPP_LDFLAGS) -o $(PRODUCT) $(OBJS) $(MAIN_OBJ) $(SYSTEM_LIBS) $(TOOLCHAIN_LIBS)
+	$(CPP_LD) $(CPP_LDFLAGS) -o $(PRODUCT) $(OBJS) $(MAIN_OBJ) $(LIBS) $(SYSTEM_LIBS) $(TOOLCHAIN_LIBS)
 	@echo "### Created: $(PRODUCT)"
 
 

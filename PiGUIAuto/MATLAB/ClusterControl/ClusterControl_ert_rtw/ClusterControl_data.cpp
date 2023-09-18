@@ -6,9 +6,9 @@
 //
 // Code generated for Simulink model 'ClusterControl'.
 //
-// Model version                  : 1.12
+// Model version                  : 1.21
 // Simulink Coder version         : 23.2 (R2023b) 19-May-2023
-// C/C++ source code generated on : Fri Sep 15 22:06:10 2023
+// C/C++ source code generated on : Sun Sep 17 21:48:26 2023
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: ARM Compatible->ARM Cortex-A (64-bit)
@@ -20,45 +20,45 @@
 // Block parameters (default storage)
 BenchTest::ClusterControl::P_ClusterControl_T BenchTest::ClusterControl::
   ClusterControl_P = {
+  // Mask Parameter: SDOF_DampingConstant
+  //  Referenced by: '<S4>/C'
+
+  3.0,
+
+  // Mask Parameter: SDOF_MassConstant
+  //  Referenced by: '<S4>/m'
+
+  0.3,
+
+  // Mask Parameter: SDOF_SpringConstant
+  //  Referenced by: '<S4>/K'
+
+  20.0,
+
   // Mask Parameter: DiscreteDerivative_ICPrevScaled
-  //  Referenced by: '<S6>/UD'
+  //  Referenced by: '<S5>/UD'
 
   0,
 
   // Computed Parameter: X_gainval
-  //  Referenced by: '<S5>/X''
+  //  Referenced by: '<S4>/X''
 
   0.01,
 
   // Expression: 0
-  //  Referenced by: '<S5>/X''
+  //  Referenced by: '<S4>/X''
 
   0.0,
 
-  // Expression: 4
-  //  Referenced by: '<S5>/C'
-
-  4.0,
-
-  // Computed Parameter: X_gainval_k
-  //  Referenced by: '<S5>/X'
+  // Computed Parameter: X_gainval_l
+  //  Referenced by: '<S4>/X'
 
   0.01,
 
   // Expression: 0
-  //  Referenced by: '<S5>/X'
+  //  Referenced by: '<S4>/X'
 
-  0.0,
-
-  // Expression: 15
-  //  Referenced by: '<S5>/K'
-
-  15.0,
-
-  // Expression: 0.2
-  //  Referenced by: '<S5>/m'
-
-  0.2
+  0.0
 };
 
 //

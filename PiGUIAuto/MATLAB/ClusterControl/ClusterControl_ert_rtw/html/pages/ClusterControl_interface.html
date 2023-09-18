@@ -178,69 +178,6 @@ Header file
 
 </table>
 <p>
-Function: <a href="javascript: void(0)" onclick="postParentWindowMessage({message:'jumpToCode',location:'Model_Step_10Hz'})">Model_Step_10Hz</a>
-</p>
-<table width="100%" class="AltRow" cellspacing="0">
-<tr class="even">
-<td width="25%" align="left" valign="top">
-Prototype
-</td>
-<td width="75%" align="left" valign="top">
-<b>
-void Model_Step_10Hz(void)
-</b>
-
-</td>
-
-</tr>
-<tr class="odd">
-<td width="25%" align="left" valign="top">
-Description
-</td>
-<td width="75%" align="left" valign="top">
-Output entry point of generated code
-</td>
-
-</tr>
-<tr class="even">
-<td width="25%" align="left" valign="top">
-Timing
-</td>
-<td width="75%" align="left" valign="top">
-Must be called exactly once
-</td>
-
-</tr>
-<tr class="odd">
-<td width="25%" align="left" valign="top">
-Arguments
-</td>
-<td width="75%" align="left" valign="top">
-None
-</td>
-
-</tr>
-<tr class="even">
-<td width="25%" align="left" valign="top">
-Return value
-</td>
-<td width="75%" align="left" valign="top">
-None
-</td>
-
-</tr>
-<tr class="odd">
-<td width="25%" align="left" valign="top">
-Header file
-</td>
-<td width="75%" align="left" valign="top">
-<a href="javascript: void(0)" onclick="postParentWindowMessage({message:'jumpToCode',location:'ClusterControl.h'})">ClusterControl.h</a>
-</td>
-
-</tr>
-
-</table>
-<p>
 Function: <a href="javascript: void(0)" onclick="postParentWindowMessage({message:'jumpToCode',location:'Terminate'})">Terminate</a>
 </p>
 <table width="100%" class="AltRow" cellspacing="0">
@@ -453,7 +390,70 @@ Dimension
 </tr>
 <tr class="even">
 <td width="38%" align="left" valign="top">
-&lt;S5&gt;/Discrete Derivative
+&lt;S2&gt;/SDOF
+</td>
+<td width="23%" align="left" valign="top">
+<i>
+Defined externally
+</i>
+
+</td>
+<td width="19%" align="left" valign="top">
+real_T
+</td>
+<td width="9%" align="left" valign="top">
+&#160;
+</td>
+<td width="9%" align="right" valign="top">
+1
+</td>
+
+</tr>
+<tr class="odd">
+<td width="38%" align="left" valign="top">
+&lt;S2&gt;/SDOF
+</td>
+<td width="23%" align="left" valign="top">
+<i>
+Defined externally
+</i>
+
+</td>
+<td width="19%" align="left" valign="top">
+real_T
+</td>
+<td width="9%" align="left" valign="top">
+&#160;
+</td>
+<td width="9%" align="right" valign="top">
+1
+</td>
+
+</tr>
+<tr class="even">
+<td width="38%" align="left" valign="top">
+&lt;S2&gt;/SDOF
+</td>
+<td width="23%" align="left" valign="top">
+<i>
+Defined externally
+</i>
+
+</td>
+<td width="19%" align="left" valign="top">
+real_T
+</td>
+<td width="9%" align="left" valign="top">
+&#160;
+</td>
+<td width="9%" align="right" valign="top">
+1
+</td>
+
+</tr>
+<tr class="odd">
+<td width="38%" align="left" valign="top">
+&lt;S4&gt;/Discrete Derivative
 </td>
 <td width="23%" align="left" valign="top">
 <i>
@@ -478,9 +478,30 @@ int32_T
 </td>
 
 </tr>
+<tr class="even">
+<td width="38%" align="left" valign="top">
+&lt;S4&gt;/X'
+</td>
+<td width="23%" align="left" valign="top">
+<i>
+Defined externally
+</i>
+
+</td>
+<td width="19%" align="left" valign="top">
+real_T
+</td>
+<td width="9%" align="left" valign="top">
+&#160;
+</td>
+<td width="9%" align="right" valign="top">
+1
+</td>
+
+</tr>
 <tr class="odd">
 <td width="38%" align="left" valign="top">
-&lt;S5&gt;/X'
+&lt;S4&gt;/X'
 </td>
 <td width="23%" align="left" valign="top">
 <i>
@@ -501,7 +522,7 @@ real_T
 </tr>
 <tr class="even">
 <td width="38%" align="left" valign="top">
-&lt;S5&gt;/X'
+&lt;S4&gt;/X
 </td>
 <td width="23%" align="left" valign="top">
 <i>
@@ -522,91 +543,7 @@ real_T
 </tr>
 <tr class="odd">
 <td width="38%" align="left" valign="top">
-&lt;S5&gt;/C
-</td>
-<td width="23%" align="left" valign="top">
-<i>
-Defined externally
-</i>
-
-</td>
-<td width="19%" align="left" valign="top">
-real_T
-</td>
-<td width="9%" align="left" valign="top">
-&#160;
-</td>
-<td width="9%" align="right" valign="top">
-1
-</td>
-
-</tr>
-<tr class="even">
-<td width="38%" align="left" valign="top">
-&lt;S5&gt;/X
-</td>
-<td width="23%" align="left" valign="top">
-<i>
-Defined externally
-</i>
-
-</td>
-<td width="19%" align="left" valign="top">
-real_T
-</td>
-<td width="9%" align="left" valign="top">
-&#160;
-</td>
-<td width="9%" align="right" valign="top">
-1
-</td>
-
-</tr>
-<tr class="odd">
-<td width="38%" align="left" valign="top">
-&lt;S5&gt;/X
-</td>
-<td width="23%" align="left" valign="top">
-<i>
-Defined externally
-</i>
-
-</td>
-<td width="19%" align="left" valign="top">
-real_T
-</td>
-<td width="9%" align="left" valign="top">
-&#160;
-</td>
-<td width="9%" align="right" valign="top">
-1
-</td>
-
-</tr>
-<tr class="even">
-<td width="38%" align="left" valign="top">
-&lt;S5&gt;/K
-</td>
-<td width="23%" align="left" valign="top">
-<i>
-Defined externally
-</i>
-
-</td>
-<td width="19%" align="left" valign="top">
-real_T
-</td>
-<td width="9%" align="left" valign="top">
-&#160;
-</td>
-<td width="9%" align="right" valign="top">
-1
-</td>
-
-</tr>
-<tr class="odd">
-<td width="38%" align="left" valign="top">
-&lt;S5&gt;/m
+&lt;S4&gt;/X
 </td>
 <td width="23%" align="left" valign="top">
 <i>

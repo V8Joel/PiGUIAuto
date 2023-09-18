@@ -6,9 +6,9 @@
 //
 // Code generated for Simulink model 'ClusterControl'.
 //
-// Model version                  : 1.12
+// Model version                  : 1.21
 // Simulink Coder version         : 23.2 (R2023b) 19-May-2023
-// C/C++ source code generated on : Fri Sep 15 22:06:10 2023
+// C/C++ source code generated on : Sun Sep 17 21:48:26 2023
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: ARM Compatible->ARM Cortex-A (64-bit)
@@ -21,42 +21,39 @@
 
 namespace BenchTest
 {
-  // Output and update for Simulink Function: '<Root>/Model_Step10'
-  void ClusterControl::Model_Step_10Hz()
-  {
-  }
-}
-
-namespace BenchTest
-{
   // Model step function
   void ClusterControl::Model_Step_100Hz()
   {
     // Outputs for Atomic SubSystem: '<Root>/Model_Step100'
-    // Outputs for Atomic SubSystem: '<S3>/SDOF'
-    // DiscreteIntegrator: '<S5>/X''
+    // Outputs for Atomic SubSystem: '<S2>/SDOF'
+    // DiscreteIntegrator: '<S4>/X''
     ClusterControl_B.Velocity = ClusterControl_DW.X_DSTATE;
 
-    // Product: '<S5>/Cx'' incorporates:
-    //   Constant: '<S5>/C'
+    // Outputs for Atomic SubSystem: '<S2>/SDOF'
+    // Product: '<S4>/Cx''
+    ClusterControl_B.Cx = ClusterControl_B.Velocity *
+      ClusterControl_P.SDOF_DampingConstant;
 
-    ClusterControl_B.Cx = ClusterControl_B.Velocity * ClusterControl_P.C_Value;
+    // End of Outputs for SubSystem: '<S2>/SDOF'
 
     // Outport: '<Root>/RPM_Out' incorporates:
-    //   DiscreteIntegrator: '<S5>/X'
+    //   DiscreteIntegrator: '<S4>/X'
 
-    ClusterControl_Y.RPM_Out = ClusterControl_DW.X_DSTATE_c;
+    ClusterControl_Y.RPM_Out = ClusterControl_DW.X_DSTATE_i;
 
-    // Product: '<S5>/Kx' incorporates:
-    //   Constant: '<S5>/K'
+    // Outputs for Atomic SubSystem: '<S2>/SDOF'
+    // Product: '<S4>/Kx' incorporates:
     //   Outport: '<Root>/RPM_Out'
 
-    ClusterControl_B.Kx = ClusterControl_Y.RPM_Out * ClusterControl_P.K_Value;
+    ClusterControl_B.Kx = ClusterControl_Y.RPM_Out *
+      ClusterControl_P.SDOF_SpringConstant;
 
-    // WeightedSampleTime: '<S6>/TSamp' incorporates:
+    // End of Outputs for SubSystem: '<S2>/SDOF'
+
+    // WeightedSampleTime: '<S5>/TSamp' incorporates:
     //   Inport: '<Root>/RPM_In'
     //
-    //  About '<S6>/TSamp':
+    //  About '<S5>/TSamp':
     //   y = u * K where K = 1 / ( w * Ts )
     //   Multiplication by K = weightedTsampQuantized is being
     //   done implicitly by changing the scaling of the input signal.
@@ -66,19 +63,19 @@ namespace BenchTest
 
     ClusterControl_B.TSamp = ClusterControl_U.RPM_In;
 
-    // UnitDelay: '<S6>/UD'
+    // UnitDelay: '<S5>/UD'
     //
-    //  Block description for '<S6>/UD':
+    //  Block description for '<S5>/UD':
     //
     //   Store in Global RAM
 
     ClusterControl_B.Uk1 = ClusterControl_DW.UD_DSTATE;
 
-    // Sum: '<S6>/Diff' incorporates:
-    //   UnitDelay: '<S6>/UD'
-    //   WeightedSampleTime: '<S6>/TSamp'
+    // Sum: '<S5>/Diff' incorporates:
+    //   UnitDelay: '<S5>/UD'
+    //   WeightedSampleTime: '<S5>/TSamp'
     //
-    //  About '<S6>/TSamp':
+    //  About '<S5>/TSamp':
     //   y = u * K where K = 1 / ( w * Ts )
     //   Multiplication by K = weightedTsampQuantized is being
     //   done implicitly by changing the scaling of the input signal.
@@ -86,56 +83,58 @@ namespace BenchTest
     //   to do work to handle the scaling of the output; this happens
     //   automatically.
     //
-    //  Block description for '<S6>/Diff':
+    //  Block description for '<S5>/Diff':
     //
     //   Add in CPU
     //
-    //  Block description for '<S6>/UD':
+    //  Block description for '<S5>/UD':
     //
     //   Store in Global RAM
 
     ClusterControl_B.Diff = ClusterControl_B.TSamp - ClusterControl_B.Uk1;
 
-    // Product: '<S5>/Cu'' incorporates:
-    //   Constant: '<S5>/C'
-    //   Sum: '<S6>/Diff'
+    // Outputs for Atomic SubSystem: '<S2>/SDOF'
+    // Product: '<S4>/Cu'' incorporates:
+    //   Sum: '<S5>/Diff'
     //
-    //  Block description for '<S6>/Diff':
+    //  Block description for '<S5>/Diff':
     //
     //   Add in CPU
 
     ClusterControl_B.Cu = static_cast<real_T>(ClusterControl_B.Diff) * 100.0 *
-      ClusterControl_P.C_Value;
+      ClusterControl_P.SDOF_DampingConstant;
 
-    // Product: '<S5>/Ku' incorporates:
-    //   Constant: '<S5>/K'
+    // Product: '<S4>/Ku' incorporates:
     //   Inport: '<Root>/RPM_In'
 
     ClusterControl_B.Ku = static_cast<real_T>(ClusterControl_U.RPM_In) *
-      ClusterControl_P.K_Value;
+      ClusterControl_P.SDOF_SpringConstant;
 
-    // Sum: '<S5>/Add'
+    // End of Outputs for SubSystem: '<S2>/SDOF'
+
+    // Sum: '<S4>/Add'
     ClusterControl_B.Add = ((ClusterControl_B.Cu - ClusterControl_B.Cx) -
       ClusterControl_B.Kx) + ClusterControl_B.Ku;
 
-    // Product: '<S5>/Divide' incorporates:
-    //   Constant: '<S5>/m'
-
+    // Outputs for Atomic SubSystem: '<S2>/SDOF'
+    // Product: '<S4>/Divide'
     ClusterControl_B.Acceleration = ClusterControl_B.Add /
-      ClusterControl_P.m_Value;
+      ClusterControl_P.SDOF_MassConstant;
 
-    // Update for DiscreteIntegrator: '<S5>/X''
+    // End of Outputs for SubSystem: '<S2>/SDOF'
+
+    // Update for DiscreteIntegrator: '<S4>/X''
     ClusterControl_DW.X_DSTATE += ClusterControl_P.X_gainval *
       ClusterControl_B.Acceleration;
 
-    // Update for DiscreteIntegrator: '<S5>/X'
-    ClusterControl_DW.X_DSTATE_c += ClusterControl_P.X_gainval_k *
+    // Update for DiscreteIntegrator: '<S4>/X'
+    ClusterControl_DW.X_DSTATE_i += ClusterControl_P.X_gainval_l *
       ClusterControl_B.Velocity;
 
-    // Update for UnitDelay: '<S6>/UD' incorporates:
-    //   WeightedSampleTime: '<S6>/TSamp'
+    // Update for UnitDelay: '<S5>/UD' incorporates:
+    //   WeightedSampleTime: '<S5>/TSamp'
     //
-    //  About '<S6>/TSamp':
+    //  About '<S5>/TSamp':
     //   y = u * K where K = 1 / ( w * Ts )
     //   Multiplication by K = weightedTsampQuantized is being
     //   done implicitly by changing the scaling of the input signal.
@@ -143,13 +142,13 @@ namespace BenchTest
     //   to do work to handle the scaling of the output; this happens
     //   automatically.
     //
-    //  Block description for '<S6>/UD':
+    //  Block description for '<S5>/UD':
     //
     //   Store in Global RAM
 
     ClusterControl_DW.UD_DSTATE = ClusterControl_B.TSamp;
 
-    // End of Outputs for SubSystem: '<S3>/SDOF'
+    // End of Outputs for SubSystem: '<S2>/SDOF'
     // End of Outputs for SubSystem: '<Root>/Model_Step100'
   }
 
@@ -157,23 +156,23 @@ namespace BenchTest
   void ClusterControl::Initialize()
   {
     // SystemInitialize for Atomic SubSystem: '<Root>/Model_Step100'
-    // SystemInitialize for Atomic SubSystem: '<S3>/SDOF'
-    // InitializeConditions for DiscreteIntegrator: '<S5>/X''
+    // SystemInitialize for Atomic SubSystem: '<S2>/SDOF'
+    // InitializeConditions for DiscreteIntegrator: '<S4>/X''
     ClusterControl_DW.X_DSTATE = ClusterControl_P.X_IC;
 
-    // InitializeConditions for DiscreteIntegrator: '<S5>/X'
-    ClusterControl_DW.X_DSTATE_c = ClusterControl_P.X_IC_g;
+    // InitializeConditions for DiscreteIntegrator: '<S4>/X'
+    ClusterControl_DW.X_DSTATE_i = ClusterControl_P.X_IC_a;
 
-    // InitializeConditions for UnitDelay: '<S6>/UD'
+    // InitializeConditions for UnitDelay: '<S5>/UD'
     //
-    //  Block description for '<S6>/UD':
+    //  Block description for '<S5>/UD':
     //
     //   Store in Global RAM
 
     ClusterControl_DW.UD_DSTATE =
       ClusterControl_P.DiscreteDerivative_ICPrevScaled;
 
-    // End of SystemInitialize for SubSystem: '<S3>/SDOF'
+    // End of SystemInitialize for SubSystem: '<S2>/SDOF'
     // End of SystemInitialize for SubSystem: '<Root>/Model_Step100'
   }
 

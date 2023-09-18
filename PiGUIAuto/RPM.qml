@@ -12,8 +12,10 @@ Item {
         id: gauge
         x: 0
         y: 0
-        width: 1000
-        height: 1000
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
         source: "assets/images/rpm_face_daytime.PNG"
         fillMode: Image.PreserveAspectFit
 
@@ -21,8 +23,10 @@ Item {
             id: rpm_needle
             x: 0
             y: 0
-            width: 1000
-            height: 1000
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
             source: "assets/images/rpm_needle_daytime_2_unmod.PNG"
             fillMode: Image.PreserveAspectFit
             rotation: ((rpm_target * (270/8000)) + 45)

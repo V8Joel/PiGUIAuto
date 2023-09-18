@@ -6,9 +6,9 @@
 //
 // Code generated for Simulink model 'ClusterControl'.
 //
-// Model version                  : 1.12
+// Model version                  : 1.21
 // Simulink Coder version         : 23.2 (R2023b) 19-May-2023
-// C/C++ source code generated on : Fri Sep 15 22:06:10 2023
+// C/C++ source code generated on : Sun Sep 17 21:48:26 2023
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: ARM Compatible->ARM Cortex-A (64-bit)
@@ -40,24 +40,24 @@ namespace BenchTest
    public:
     // Block signals (default storage)
     struct B_ClusterControl_T {
-      real_T Velocity;                 // '<S5>/X''
-      real_T Cx;                       // '<S5>/Cx''
-      real_T Kx;                       // '<S5>/Kx'
-      real_T Cu;                       // '<S5>/Cu''
-      real_T Ku;                       // '<S5>/Ku'
-      real_T Add;                      // '<S5>/Add'
-      real_T Acceleration;             // '<S5>/Divide'
-      int32_T TSamp;                   // '<S6>/TSamp'
-      int32_T Uk1;                     // '<S6>/UD'
-      int32_T Diff;                    // '<S6>/Diff'
+      real_T Velocity;                 // '<S4>/X''
+      real_T Cx;                       // '<S4>/Cx''
+      real_T Kx;                       // '<S4>/Kx'
+      real_T Cu;                       // '<S4>/Cu''
+      real_T Ku;                       // '<S4>/Ku'
+      real_T Add;                      // '<S4>/Add'
+      real_T Acceleration;             // '<S4>/Divide'
+      int32_T TSamp;                   // '<S5>/TSamp'
+      int32_T Uk1;                     // '<S5>/UD'
+      int32_T Diff;                    // '<S5>/Diff'
     };
 
     // Block states (default storage) for system '<Root>'
     struct DW_ClusterControl_T {
-      real_T X_DSTATE;                 // '<S5>/X''
-      real_T X_DSTATE_c;               // '<S5>/X'
-      int32_T UD_DSTATE;               // '<S6>/UD'
-      int32_T Diff_DWORK1;             // '<S6>/Diff'
+      real_T X_DSTATE;                 // '<S4>/X''
+      real_T X_DSTATE_i;               // '<S4>/X'
+      int32_T UD_DSTATE;               // '<S5>/UD'
+      int32_T Diff_DWORK1;             // '<S5>/Diff'
     };
 
     // External inputs (root inport signals with default storage)
@@ -72,30 +72,30 @@ namespace BenchTest
 
     // Parameters (default storage)
     struct P_ClusterControl_T {
+      real_T SDOF_DampingConstant;     // Mask Parameter: SDOF_DampingConstant
+                                          //  Referenced by: '<S4>/C'
+
+      real_T SDOF_MassConstant;        // Mask Parameter: SDOF_MassConstant
+                                          //  Referenced by: '<S4>/m'
+
+      real_T SDOF_SpringConstant;      // Mask Parameter: SDOF_SpringConstant
+                                          //  Referenced by: '<S4>/K'
+
       int32_T DiscreteDerivative_ICPrevScaled;
                               // Mask Parameter: DiscreteDerivative_ICPrevScaled
-                                 //  Referenced by: '<S6>/UD'
+                                 //  Referenced by: '<S5>/UD'
 
       real_T X_gainval;                // Computed Parameter: X_gainval
-                                          //  Referenced by: '<S5>/X''
+                                          //  Referenced by: '<S4>/X''
 
       real_T X_IC;                     // Expression: 0
-                                          //  Referenced by: '<S5>/X''
+                                          //  Referenced by: '<S4>/X''
 
-      real_T C_Value;                  // Expression: 4
-                                          //  Referenced by: '<S5>/C'
+      real_T X_gainval_l;              // Computed Parameter: X_gainval_l
+                                          //  Referenced by: '<S4>/X'
 
-      real_T X_gainval_k;              // Computed Parameter: X_gainval_k
-                                          //  Referenced by: '<S5>/X'
-
-      real_T X_IC_g;                   // Expression: 0
-                                          //  Referenced by: '<S5>/X'
-
-      real_T K_Value;                  // Expression: 15
-                                          //  Referenced by: '<S5>/K'
-
-      real_T m_Value;                  // Expression: 0.2
-                                          //  Referenced by: '<S5>/m'
+      real_T X_IC_a;                   // Expression: 0
+                                          //  Referenced by: '<S4>/X'
 
     };
 
@@ -145,9 +145,6 @@ namespace BenchTest
     // Block states
     DW_ClusterControl_T ClusterControl_DW;
 
-    // private member function(s) for subsystem '<Root>/Model_Step10'
-    void Model_Step_10Hz();
-
     // Real-Time Model
     RT_MODEL_ClusterControl_T ClusterControl_M;
   };
@@ -156,7 +153,7 @@ namespace BenchTest
 //-
 //  These blocks were eliminated from the model due to optimizations:
 //
-//  Block '<S6>/Data Type Duplicate' : Unused code path elimination
+//  Block '<S5>/Data Type Duplicate' : Unused code path elimination
 
 
 //-
@@ -175,11 +172,10 @@ namespace BenchTest
 //
 //  '<Root>' : 'ClusterControl'
 //  '<S1>'   : 'ClusterControl/Initialize Function'
-//  '<S2>'   : 'ClusterControl/Model_Step10'
-//  '<S3>'   : 'ClusterControl/Model_Step100'
-//  '<S4>'   : 'ClusterControl/Terminate Function'
-//  '<S5>'   : 'ClusterControl/Model_Step100/SDOF'
-//  '<S6>'   : 'ClusterControl/Model_Step100/SDOF/Discrete Derivative'
+//  '<S2>'   : 'ClusterControl/Model_Step100'
+//  '<S3>'   : 'ClusterControl/Terminate Function'
+//  '<S4>'   : 'ClusterControl/Model_Step100/SDOF'
+//  '<S5>'   : 'ClusterControl/Model_Step100/SDOF/Discrete Derivative'
 
 #endif                                 // RTW_HEADER_ClusterControl_h_
 

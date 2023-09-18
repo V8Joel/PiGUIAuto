@@ -3,7 +3,7 @@
 
 simulinkmodelwrapper::simulinkmodelwrapper(QObject* parent)
     : QObject(parent)
-//    , timer10Hz(new QTimer) // 10Hz Timer Constructor
+    //    , timer10Hz(new QTimer) // 10Hz Timer Constructor
     , timer100Hz(new QTimer) // 100Hz Timer Constructor
     , m_rpmOut (0)
 {
@@ -12,17 +12,17 @@ simulinkmodelwrapper::simulinkmodelwrapper(QObject* parent)
     model.Initialize();
 
     // Set up the 10Hz timer
-//    timer10Hz->setInterval(100); // 10Hz
-//    timer10Hz->setTimerType(Qt::PreciseTimer);
+    //    timer10Hz->setInterval(100); // 10Hz
+    //    timer10Hz->setTimerType(Qt::PreciseTimer);
 
     // Set up the 100Hz timer
     timer100Hz->setInterval(10); // 100Hz
     timer100Hz->setTimerType(Qt::PreciseTimer);
 
-//    connect(timer10Hz, &QTimer::timeout, this, &simulinkmodelwrapper::stepModel10Hz);
+    //    connect(timer10Hz, &QTimer::timeout, this, &simulinkmodelwrapper::stepModel10Hz);
     connect(timer100Hz, &QTimer::timeout, this, &simulinkmodelwrapper::stepModel100Hz);
 
-//    timer10Hz->start();
+    //    timer10Hz->start();
     timer100Hz->start();
 }
 
@@ -30,7 +30,7 @@ simulinkmodelwrapper::simulinkmodelwrapper(QObject* parent)
 simulinkmodelwrapper::~simulinkmodelwrapper()
 {
     emit stopTimerSignal(); // Emit the signal to stop the timer
-//    timer10Hz->stop(); // Explicitly stop the 10Hz timer
+    //    timer10Hz->stop(); // Explicitly stop the 10Hz timer
     timer100Hz->stop(); // Explicitly stop the 100Hz timer
 }
 
@@ -45,19 +45,20 @@ void simulinkmodelwrapper::stepModel100Hz()
 {
     model.Model_Step_100Hz(); // Executes the Simulink 10Hz main code, based on the QTimer
     setRpmOut(model.getRPM_Out());
-//    qDebug() << "Simulink Model Stepped (100Hz)";
+    //    qDebug() << "Simulink Model Stepped (100Hz)";
 }
 
 void simulinkmodelwrapper::rpmIn(int32_T sliderRPM)
 {
     model.setRPM_In(sliderRPM);
-//    qDebug() << "SliderRPM value assigned to: " << sliderRPM;
+    //    qDebug() << "SliderRPM value assigned to: " << sliderRPM;
 }
 
 int simulinkmodelwrapper::rpmOut() const
 {
-    return m_rpmOut;
+
     qDebug() << "rpmOut Obtained: " << m_rpmOut;
+    return m_rpmOut;
 }
 
 void simulinkmodelwrapper::setRpmOut(int newRpmOut)

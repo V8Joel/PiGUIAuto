@@ -22,6 +22,7 @@ qt_add_qml_module(appPiGUIAuto
     SOURCES simulinkmodelwrapper.h simulinkmodelwrapper.cpp
     SOURCES  MATLAB/ClusterControl/ClusterControl_ert_rtw/ClusterControl_types.h MATLAB/ClusterControl/ClusterControl_ert_rtw/ClusterControl_private.h MATLAB/ClusterControl/ClusterControl_ert_rtw/ClusterControl_data.cpp MATLAB/ClusterControl/ClusterControl_ert_rtw/ClusterControl.h MATLAB/ClusterControl/ClusterControl_ert_rtw/ClusterControl.cpp
     RESOURCES MATLAB/ClusterControl/slprj/ert/_sharedutils/rtwtypes.h
+    RESOURCES assets/images/Patrol_Large_Needle.PNG assets/images/Patrol_Small_Needle.PNG assets/images/Patrol.PNG
 )
 
 
