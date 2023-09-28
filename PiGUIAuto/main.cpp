@@ -31,6 +31,9 @@ int main(int argc, char *argv[])
         QObject::connect(&modelWrapper, &simulinkmodelwrapper::rpmOutChanged, rootObject, [rootObject](int value) {
             QMetaObject::invokeMethod(rootObject, "onRpmOutChanged", Q_ARG(QVariant, value));
         });
+        QObject::connect(&modelWrapper, &simulinkmodelwrapper::speedOutChanged, rootObject, [rootObject](real_T value) {
+            QMetaObject::invokeMethod(rootObject, "onSpeedOutChanged", Q_ARG(QVariant, value));
+        });
 
     }
 

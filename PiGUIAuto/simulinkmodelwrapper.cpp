@@ -45,6 +45,7 @@ void simulinkmodelwrapper::stepModel100Hz()
 {
     model.Model_Step_100Hz(); // Executes the Simulink 10Hz main code, based on the QTimer
     setRpmOut(model.getRPM_Out());
+    setSpeedOut(model.getSpeed_Out());
     //    qDebug() << "Simulink Model Stepped (100Hz)";
 }
 
@@ -61,6 +62,12 @@ int simulinkmodelwrapper::rpmOut() const
     return m_rpmOut;
 }
 
+real_T simulinkmodelwrapper::speedOut() const
+{
+    qDebug() << "speedOut Obtained: " << m_speedOut;
+    return m_speedOut;
+}
+
 void simulinkmodelwrapper::setRpmOut(int newRpmOut)
 {
     if (m_rpmOut != newRpmOut) {
@@ -68,6 +75,20 @@ void simulinkmodelwrapper::setRpmOut(int newRpmOut)
         emit rpmOutChanged(newRpmOut);
     }
     qDebug() << "rpmOut Value Updated: " << newRpmOut;
+}
+
+void simulinkmodelwrapper::speedIn(real_T sliderSpeed)
+{
+    model.setSpeed_In(sliderSpeed);
+}
+
+void simulinkmodelwrapper::setSpeedOut(real_T newSpeedOut)
+{
+    if (m_speedOut != newSpeedOut) {
+        m_speedOut = newSpeedOut;
+        emit speedOutChanged(newSpeedOut);
+    }
+    qDebug() << "speedOut Value Updated: " << newSpeedOut;
 }
 
 void simulinkmodelwrapper::shutdown()

@@ -6,9 +6,9 @@
 //
 // Code generated for Simulink model 'ClusterControl'.
 //
-// Model version                  : 1.21
+// Model version                  : 1.23
 // Simulink Coder version         : 23.2 (R2023b) 19-May-2023
-// C/C++ source code generated on : Sun Sep 17 21:48:26 2023
+// C/C++ source code generated on : Mon Sep 18 15:23:57 2023
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: ARM Compatible->ARM Cortex-A (64-bit)
